@@ -1,11 +1,11 @@
 #include <iostream>
+#include <curses.h>
+#include "mainScreen.hpp"
+
 
 int main() {
-
-	std::cout << "Hello world" << std::endl;
-
-
 	
+	displayMainScreen();
 
 	return 0;
 }

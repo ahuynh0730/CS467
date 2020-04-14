@@ -7,14 +7,14 @@ CXXFLAGS += -g
 #CXXFLAGS += -O3
 LDFLAGS = -lboost_date_time
 
-OBJS = main.o 
+OBJS = main.o mainScreen.o
 
-SRCS = main.cpp
+SRCS = main.cpp mainScreen.cpp
  
-HEADERS = 
+HEADERS = mainScreen.hpp
 
 main: ${OBJS} ${HEADERS}
-	${CXX} ${LDFLAGS} ${OBJS} -o main
+	${CXX} ${LDFLAGS} ${OBJS} -o main -lncurses
 
 ${OBJS}: ${SRCS}
 	${CXX} ${CXXFLAGS} -c $(@:.o=.cpp)
