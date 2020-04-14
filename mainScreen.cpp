@@ -52,13 +52,5 @@ void displayMainScreen() {
 
 	//deallocates memory and ends ncurses
 	endwin();
-	/*
-	clearScreen();
-	std::cout << "Murder Mystery" << std::endl;
-
-	std::cout << std::endl << std::endl << "Start Game" << std::endl;
-	std::cout << "Load Game" << std::endl;
-	std::cout << "Quit" << std::endl;*/
-
 }
 
