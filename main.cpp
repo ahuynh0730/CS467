@@ -1,5 +1,5 @@
-#include <iostream>
 #include <curses.h>
+#include <iostream>
 #include "mainScreen.hpp"
 
 
@@ -7,6 +7,7 @@ int main() {
 	const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
 	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
+	const char* hitButton = "Please enter any button to continue.";
 	const char* menuInstructions = "Please use the arrow keys to move up/down. Hit enter to select option.";
 	int menuChoice;
 
@@ -25,15 +26,22 @@ int main() {
 
 	//will display message if screen needs to be bigger
 	if (height < newHeight + 4 || width < newWidth + 4) {
+		move(0, 0);
 		if (height < newHeight + 4 && width < newWidth + 4) {
-			printf("%s\n", makeWiderAndTaller);
+			printw(makeWiderAndTaller);
+			//printf("%s\n", makeWiderAndTaller);
 		}
 		else if (height < newHeight + 4) {
-			printf("%s\n", makeTaller);
+			printw(makeTaller);
+			//printf("%s\n", makeTaller);
 		}
 		else if (width < newWidth + 4) {
-			printf("%s\n", makeWider);
+			printw(makeWider);
+			//printf("%s\n", makeWider);
 		}
+		move(1, 0);
+		printw(hitButton);
+		refresh();
 	}
 
 	else {
@@ -48,10 +56,11 @@ int main() {
 
 		menuChoice = displayMainScreen(win);
 	}
+	getch();
+
 	//deallocates memory and ends ncurses
 	endwin();
 
-	std::cout << "Menu Choice: " << menuChoice << std::endl;
 
 	return 0;
 }
