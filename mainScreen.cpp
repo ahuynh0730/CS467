@@ -5,7 +5,7 @@
 
 
 
-void displayMainScreen(WINDOW* win) {
+int displayMainScreen(WINDOW* win) {
 
 	const char* gameTitle = "Murder Mystery";
 	const char* startOption = "Start New Game";
@@ -13,7 +13,8 @@ void displayMainScreen(WINDOW* win) {
 	const char* quitGame = "Quit Game";
 	const char* arrow = "->";
 	int arrowPosition = 0;
-	char playerInput = '0';
+	wchar_t playerInput = '0';
+	keypad(win, TRUE);
 	
 
 	
@@ -24,8 +25,8 @@ void displayMainScreen(WINDOW* win) {
 	//initializes middleWidth
 	int middleWidth = ceil(width / 2);
 
-	//loop until player hits a button
-	while (playerInput != 'a') {
+	//loop that will only end upon hitting enter, and returns position of arrow
+	while (1) {
 		//boxes window
 		box(win, '|', '_');
 
@@ -54,35 +55,36 @@ void displayMainScreen(WINDOW* win) {
 		switch (arrowPosition) {
 		case 0:
 			wmove(win, newGameRow, middleWidth - strlen(startOption) / 2 - 3);
-			wprintw(win, arrow);
 			break;
 		case 1:
 			wmove(win, loadGameRow, middleWidth - strlen(loadOption) / 2 - 3);
-			wprintw(win, arrow);
 			break;
 		case 2:
 			wmove(win, quitGameRow, middleWidth - strlen(quitGame) / 2 - 3);
-			wprintw(win, arrow);
 			break;
 		default:
 			break;
 		}
+
+		wprintw(win, arrow);
 
 		//refreshes screen
 		wrefresh(win);
 
-		//will move arrows up and down with w and s
+		//will move arrows up and down with up and down arrows
 		playerInput = wgetch(win);
 		switch (playerInput) {
-		case 'w':
+		case KEY_UP:
 			arrowPosition = (arrowPosition + 2) % 3;
 			break;
-		case 's':
+		case KEY_DOWN:
 			arrowPosition = (arrowPosition + 1) % 3;
 			break;
-		default:
+		case 10:
+			return arrowPosition;
 			break;
 		}
+		
 
 		//clears window before printing again
 		wclear(win);
