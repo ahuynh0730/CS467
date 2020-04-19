@@ -7,6 +7,8 @@ int main() {
 	const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
 	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
+	const char* menuInstructions = "Please use the arrow keys to move up/down. Hit enter to select option.";
+	int menuChoice;
 
 	//initializes screen, allocates memory for screen
 	initscr();
@@ -35,16 +37,21 @@ int main() {
 	}
 
 	else {
+		move(0, 0);
+		printw(menuInstructions);
+
 		//creates new window from parameters
 		WINDOW* win = newwin(newHeight, newWidth, start_y, start_x);
 		refresh();
 
 		keypad(win, TRUE);
 
-		displayMainScreen(win);
+		menuChoice = displayMainScreen(win);
 	}
 	//deallocates memory and ends ncurses
 	endwin();
+
+	std::cout << "Menu Choice: " << menuChoice << std::endl;
 
 	return 0;
 }
