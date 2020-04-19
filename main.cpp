@@ -73,6 +73,9 @@ int main() {
 		case 2:
 			break;
 		}
+
+		//frees memory used by created subwindow
+		delwin(win);
 	}
 
 	//deallocates memory and ends ncurses
