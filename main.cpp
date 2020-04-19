@@ -39,8 +39,8 @@ int main() {
 		WINDOW* win = newwin(newHeight, newWidth, start_y, start_x);
 		refresh();
 
-		//boxes window
-		box(win, '|', '_');
+		keypad(win, TRUE);
+
 		displayMainScreen(win);
 	}
 	//deallocates memory and ends ncurses
