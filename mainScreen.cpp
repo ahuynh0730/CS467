@@ -11,6 +11,8 @@ void displayMainScreen(WINDOW* win) {
 	const char* startOption = "Start New Game";
 	const char* loadOption = "Load Game";
 	const char* quitGame = "Quit Game";
+	const char* arrow = "->";
+	int arrowPosition = 2;
 
 	
 	//initializes and gets width and height of screen
@@ -26,20 +28,37 @@ void displayMainScreen(WINDOW* win) {
 
 
 	//moves cursor and prints start new game option
-	int startingRow = height - 10;
-	wmove(win, startingRow, middleWidth - strlen(startOption) / 2);
+	int newGameRow = height - 10;
+	wmove(win, newGameRow, middleWidth - strlen(startOption) / 2);
 	wprintw(win, startOption);
 
 	//moves cursor and prints load game option
-	startingRow++;
-	wmove(win, startingRow, middleWidth - strlen(loadOption) / 2);
+	int loadGameRow = newGameRow + 1;
+	wmove(win, loadGameRow, middleWidth - strlen(loadOption) / 2);
 	wprintw(win, loadOption);
 
 
 	//moves cursor and prints quit option
-	startingRow++;
-	wmove(win, startingRow, middleWidth - strlen(quitGame) / 2);
+	int quitGameRow = loadGameRow + 1;
+	wmove(win, quitGameRow, middleWidth - strlen(quitGame) / 2);
 	wprintw(win, quitGame);
+
+	switch (arrowPosition){
+	case 0:
+		wmove(win, newGameRow, middleWidth - strlen(startOption) / 2 - 3);
+		wprintw(win, arrow);
+		break;
+	case 1:
+		wmove(win, loadGameRow, middleWidth - strlen(loadOption) / 2 - 3);
+		wprintw(win, arrow);
+		break;
+	case 2:
+		wmove(win, quitGameRow, middleWidth - strlen(quitGame) / 2 - 3);
+		wprintw(win, arrow);
+		break;
+	default: 
+		break;
+	}
 
 	//refreshes screen
 	wrefresh(win);

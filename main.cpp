@@ -4,9 +4,9 @@
 
 
 int main() {
-	const char* makeTaller = "Please make your console screen taller.";
-	const char* makeWider = "Please make your console screen wider.";
-	const char* makeWiderAndTaller = "Please make your console screen taller and wider.";
+	const char* makeTaller = "Please make your console screen taller and try again.";
+	const char* makeWider = "Please make your console screen wider and try again.";
+	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
 
 	//initializes screen, allocates memory for screen
 	initscr();
@@ -23,15 +23,14 @@ int main() {
 
 	//will display message if screen needs to be bigger
 	if (height < newHeight + 4 || width < newWidth + 4) {
-		move(0, 0);
 		if (height < newHeight + 4 && width < newWidth + 4) {
-			printw(makeWiderAndTaller);
+			printf("%s\n", makeWiderAndTaller);
 		}
 		else if (height < newHeight + 4) {
-			printw(makeTaller);
+			printf("%s\n", makeTaller);
 		}
 		else if (width < newWidth + 4) {
-			printw(makeWider);
+			printf("%s\n", makeWider);
 		}
 	}
 
@@ -44,7 +43,6 @@ int main() {
 		box(win, '|', '_');
 		displayMainScreen(win);
 	}
-
 	//deallocates memory and ends ncurses
 	endwin();
 
