@@ -13,8 +13,7 @@ int displayMainScreen(WINDOW* win) {
 	const char* quitGame = "Quit Game";
 	const char* arrow = "->";
 	int arrowPosition = 0;
-	wchar_t playerInput = '0';
-	keypad(win, TRUE);
+	int playerInput = -1;
 	
 
 	
