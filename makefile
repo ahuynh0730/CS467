@@ -7,11 +7,11 @@ CXXFLAGS += -g
 #CXXFLAGS += -O3
 LDFLAGS = -lboost_date_time
 
-OBJS = main.o mainScreen.o
+OBJS = main.o mainScreen.o verbs.o
 
-SRCS = main.cpp mainScreen.cpp
+SRCS = main.cpp mainScreen.cpp verbs.cpp
  
-HEADERS = mainScreen.hpp
+HEADERS = mainScreen.hpp verbs.hpp
 
 main: ${OBJS} ${HEADERS}
 	${CXX} ${LDFLAGS} ${OBJS} -o main -lncurses

@@ -1,6 +1,8 @@
 #include <curses.h>
 #include <iostream>
+#include <string.h>
 #include "mainScreen.hpp"
+#include "verbs.hpp"
 
 void startNewGame(WINDOW*);
 void loadGame(WINDOW*);
@@ -86,6 +88,8 @@ int main() {
 }
 
 void startNewGame(WINDOW* win) {
+	char playerInput[50];
+
 	//clears and boxes window 
 	wclear(win);
 	box(win, '|', '_');
@@ -94,9 +98,23 @@ void startNewGame(WINDOW* win) {
 	wmove(win, 1, 1);
 	wprintw(win, "Starting game");
 	wmove(win, 2, 1);
-	wprintw(win, hitButton);
+	wprintw(win, "Type help to see page with help commands.");
+	wmove(win, 3, 1);
+	wprintw(win, "Any other command will be invalid.");
+	move(0, 0);
 	wrefresh(win);
-	getch();
+	getstr(playerInput);
+	if (strcmp("help", playerInput) == 0) {
+		displayHelpList(win);
+	}
+	else {
+		wmove(win, 4, 1);
+		wprintw(win, "You entered %s", playerInput);
+		wmove(win, 5, 1);
+		wprintw(win, hitButton);
+		wrefresh(win);
+		getch();
+	}
 }
 
 void loadGame(WINDOW* win) {
