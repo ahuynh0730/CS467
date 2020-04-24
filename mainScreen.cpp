@@ -5,7 +5,7 @@
 
 
 
-int displayMainScreen(WINDOW* win) {
+int displayMainScreen() {
 
 	const char* gameTitle = "Murder Mystery";
 	const char* startOption = "Start New Game";

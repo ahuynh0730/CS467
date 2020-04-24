@@ -11,7 +11,7 @@ OBJS = main.o mainScreen.o verbs.o
 
 SRCS = main.cpp mainScreen.cpp verbs.cpp
  
-HEADERS = mainScreen.hpp verbs.hpp
+HEADERS = mainScreen.hpp verbs.hpp common.hpp
 
 main: ${OBJS} ${HEADERS}
 	${CXX} ${LDFLAGS} ${OBJS} -o main -lncurses

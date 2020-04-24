@@ -4,7 +4,7 @@
 #include <string>
 
 
-void displayHelpList(WINDOW* win) {
+void displayHelpList() {
 
 	//clears and boxes window
 	wclear(win);

@@ -1,12 +1,13 @@
 #include <curses.h>
+#include "common.hpp"
 
 #ifndef VERBS_hpp
 #define VERBS_hpp
 
-void displayHelpList(WINDOW*);
+void displayHelpList();
 
 
-#endif // !MAINSCREEN_hpp
+#endif 
 
 
 

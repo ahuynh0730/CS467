@@ -1,9 +1,10 @@
 #include <curses.h>
+#include "common.hpp"
 
 #ifndef MAINSCREEN_hpp
 #define MAINSCREEN_hpp
 
-int displayMainScreen(WINDOW*);
+int displayMainScreen();
 
 #endif // !MAINSCREEN_hpp
 
