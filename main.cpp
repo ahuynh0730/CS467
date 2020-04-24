@@ -10,8 +10,6 @@ WINDOW* win;
 const char* hitButton = "Please enter any button to continue.";
 
 
-
-
 int main() {
 	const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
