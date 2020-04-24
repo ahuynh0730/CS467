@@ -1,4 +1,6 @@
+#include <cmath>
 #include <curses.h>
+#include <string.h>
 #include "common.hpp"
 
 #ifndef GAMEFUNCTIONS_hpp

@@ -1,10 +1,7 @@
-#include <curses.h>
-#include "common.hpp"
 #include "gameFunctions.hpp"
 
 
-#include <cmath>
-#include <string.h>
+
 
 
 
