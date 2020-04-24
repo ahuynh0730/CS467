@@ -3,5 +3,6 @@
 
 extern WINDOW* stdscr;
 extern WINDOW* win;
+extern const char* hitButton;
 
 #endif
