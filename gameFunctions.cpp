@@ -1,10 +1,6 @@
 #include "gameFunctions.hpp"
 
 
-
-
-
-
 int displayMainScreen() {
 
 	const char* gameTitle = "Murder Mystery";
@@ -129,8 +125,7 @@ void startNewGame() {
 	move(0, 0);
 	wrefresh(win);
 	getch();
-	displayHelpList();
-	getch();
+
 }
 
 void loadGame() {
@@ -145,9 +140,12 @@ void loadGame() {
 	wprintw(win, hitButton);
 	wrefresh(win);
 	getch();
+
 }
 
 void displayHelpList() {
+	
+	saveScreen();
 
 	//clears and boxes window
 	wclear(win);
@@ -174,4 +172,49 @@ void displayHelpList() {
 	printw("Press any key to return to previous screen.");
 	refresh();
 	getch();
+
+	previousScreen();
+	
+}
+
+// this function saves content on screen and should be called before a new screen is displayed
+void saveScreen() {
+	//opens a file and puts stdscr content in file
+	FILE* myFile;
+	myFile = fopen("stdscrWindow.txt", "w");
+	putwin(stdscr, myFile);
+	fclose(myFile);
+
+	//opens file and puts subwindow content in file
+	myFile = fopen("subwindow.txt", "w");
+	putwin(win, myFile);
+	fclose(myFile);
+}
+
+//restores what the screen looked like prior to new screen
+void previousScreen() {
+	FILE* myFile;
+	//frees window before opening again 
+	delwin(win);
+	endwin();
+
+	//returns mainscreen to how it was before
+	myFile = fopen("stdscrWindow.txt", "r");
+	stdscr = getwin(myFile);
+	fclose(myFile);
+
+	//returns subscreen
+	//opens file for reading window content and updates window
+	myFile = fopen("subwindow.txt", "r");
+	win = getwin(myFile);
+	fclose(myFile);
+
+	//removes newly created files for windows
+	remove("stdscrWindow.txt");
+	remove("subwindow.txt");
+
+
+	//updates screen
+	refresh();
+	wrefresh(win);
 }
