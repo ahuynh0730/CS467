@@ -3,7 +3,6 @@
 #include <string.h>
 #include "common.hpp"
 #include "gameFunctions.hpp"
-//#include "verbs.hpp"
 
 WINDOW* stdscr;
 WINDOW* win;
