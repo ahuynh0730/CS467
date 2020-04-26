@@ -4,14 +4,16 @@
 
 class Room{
 private:
-	int roomNumber = -1;
-	Room* North;
-	Room* West;
-	Room* South;
-	Room* East;
+	Room* up;
+	Room* right;
+	Room* down;
+	Room* left;
 
 public:
-
+	void connectUp(Room*);
+	void connectRight(Room*);
+	void connectDown(Room*);
+	void connectLeft(Room*);
 
 };
 
