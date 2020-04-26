@@ -1,0 +1,6 @@
+2
+5
+3
+null
+null
+This room is conneccted to room 3 and room 5.
