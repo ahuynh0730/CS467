@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include "common.hpp"
+#include "Game.hpp"
 #include "gameFunctions.hpp"
 
 WINDOW* stdscr;
@@ -46,39 +47,44 @@ int main() {
 		printw(hitButton);
 		refresh();
 		getch();
+		endwin();
+		return 0;
 	}
 
-	else {
-		//will print instructions for menu
-		move(0, 0);
-		printw(menuInstructions);
+	//will print instructions for menu
+	move(0, 0);
+	printw(menuInstructions);
 
-		//creates new window from parameters
-		win = newwin(newHeight, newWidth, start_y, start_x);
-		refresh();
+	//creates new window from parameters
+	win = newwin(newHeight, newWidth, start_y, start_x);
+	refresh();
 
-		//this allows arrow keys and enter button to be captured
-		keypad(win, TRUE);
+	//this allows arrow keys and enter button to be captured
+	keypad(win, TRUE);
 
-		//obtains menu choice from user and acts accordingly
-		menuChoice = displayMainScreen();
-		move(0, 0);
-		clrtoeol();
-		refresh();
-		switch (menuChoice) {
-		case 0:
-			startNewGame();
-			break;
-		case 1:
-			loadGame();
-			break;
-		case 2:
-			break;
-		}
-
-		//frees memory used by created subwindow
+	//obtains menu choice from user and acts accordingly
+	menuChoice = displayMainScreen();
+	move(0, 0);
+	clrtoeol();
+	refresh();
+	switch (menuChoice) {
+	case 0:
+		Game game1;
+		game1.displayGameInfo();
+		break;
+	case 1:
+		loadGame();
+		break;
+	case 2:
 		delwin(win);
+		endwin();
+		return 0;
+		break;
 	}
+
+	//frees memory used by created subwindow
+	delwin(win);
+	
 
 	//deallocates memory and ends ncurses
 	endwin();

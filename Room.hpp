@@ -10,6 +10,7 @@ private:
 	Room* South;
 	Room* East;
 
+public:
 
 
 };

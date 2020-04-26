@@ -8,7 +8,6 @@
 #define GAMEFUNCTIONS_hpp
 
 int displayMainScreen();
-void startNewGame();
 void loadGame();
 void displayHelpList();
 void saveScreen();
