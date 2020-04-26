@@ -1,5 +1,5 @@
-#ifndef ROOMS_hpp
-#define ROOMS_hpp
+#ifndef ROOM_hpp
+#define ROOM_hpp
 
 
 class Room{
