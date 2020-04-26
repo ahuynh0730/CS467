@@ -38,3 +38,58 @@ void Game::displayGameInfo() {
 	getch();
 
 }
+
+void Game::createRooms() {
+	std::ifstream inFile;
+	std::string inputLine;
+	std::string pathName;
+	int roomNumber, up, right, down, left;
+
+	for (int i = 0; i < 15; i++) {
+		rooms.push_back(Room());
+	}
+	
+
+	
+	for (int i = 1; i < 16; i++) {
+		pathName = "rooms/room" + std::to_string(i) + ".txt";
+		inFile.open(pathName);
+		inFile >> roomNumber >> up >> right >> down >> left;
+		
+		//decrementing numbers to account for zero indexing
+		//numbers will be -1 if 0 was read in(or null)
+		roomNumber--;
+		up--;
+		right--;
+		down--;
+		left--;
+
+
+		rooms[roomNumber].setRoomNumber(roomNumber + 1);
+		std::cout << roomNumber << ", " << up << ", " << right << ", " << down << ", " << left << std::endl;
+		
+		//will assign pointer to correct room unless it is < 0
+		if (up > -1) {
+			rooms[roomNumber].connectUp(&(rooms[up]));
+		}
+		if (right > -1) {
+			rooms[roomNumber].connectRight(&(rooms[right]));
+		}
+		if (down > -1) {
+			rooms[roomNumber].connectDown(&(rooms[down]));
+		}
+		if (left > -1) {
+			rooms[roomNumber].connectLeft(&(rooms[left]));
+		}
+
+		inFile.close();
+	}
+
+	for (unsigned int i = 0; i < rooms.size(); i++) {
+		rooms[i].printRoomInfo();
+	}
+	
+
+
+
+}
