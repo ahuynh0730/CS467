@@ -11,12 +11,12 @@ const char* hitButton = "Please enter any button to continue.";
 
 
 int main() {
-	Game game1;
-	game1.createRooms();
+	//Game game1;
+	//game1.createRooms();
 
 	//below is formatting code to be uncommented later
 	//include initializing screen, making sure screen is big enough, creating a new screen, and displaying the main menu
-	/*const char* makeTaller = "Please make your console screen taller and try again.";
+	const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
 	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
 	const char* menuInstructions = "Please use the arrow keys to move up/down. Hit enter to select option.";
@@ -92,7 +92,7 @@ int main() {
 	
 
 	//deallocates memory and ends ncurses
-	endwin();*/
+	endwin();
 
 
 	return 0;
