@@ -3,3 +3,4 @@
 -1
 4
 6
+This is Room 7.
