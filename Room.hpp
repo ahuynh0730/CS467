@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <vector>
 
 class Room{
 private:
@@ -13,6 +14,8 @@ private:
 	Room* south;
 	Room* west;
 	char* longDescription;
+	char* shortDescription;
+	std::vector<std::string> travelCommands;
 
 public:
 	Room();
@@ -24,6 +27,8 @@ public:
 	int getRoomNumber();
 	void setLongDescription(std::string);
 	char* getLongDescription();
+	void setShortDescription(std::string);
+	char* getShortDescription();
 	void freeRoom();
 
 };

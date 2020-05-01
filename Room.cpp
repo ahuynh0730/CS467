@@ -8,6 +8,7 @@ Room::Room() {
 	south = NULL;
 	west = NULL;
 	longDescription = new char[1000];
+	shortDescription = new char[1000];
 }
 
 
@@ -44,6 +45,16 @@ char* Room::getLongDescription(){
 	return longDescription;
 }
 
+void Room::setShortDescription(std::string input){
+	strcpy(shortDescription, input.c_str());
+}
+
+char * Room::getShortDescription()
+{
+	return shortDescription;
+}
+
 void Room::freeRoom(){
 	delete longDescription;
+	delete shortDescription;
 }

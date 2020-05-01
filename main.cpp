@@ -13,11 +13,12 @@ const char* hitButton = "Please enter any button to continue.";
 
 
 int main() {
-	//Game game1;
-	//game1.createRooms();
-	//std::cout << game1.getCurrentRoom()->getLongDescription() << std::endl;
-	//game1.freeGame();
+	Game game1;
+	game1.createRooms();
+	std::cout << game1.getCurrentRoom()->getLongDescription() << std::endl;
+	std::cout << game1.getCurrentRoom()->getShortDescription() << std::endl;
 
+	/*
 	//below is formatting code to be uncommented later
 	//include initializing screen, making sure screen is big enough, creating a new screen, and displaying the main menu
 	const char* makeTaller = "Please make your console screen taller and try again.";
@@ -161,7 +162,7 @@ int main() {
 
 
 	//deallocates memory and ends ncurses
-	endwin();
+	endwin();*/
 	game1.freeGame();
 	
 

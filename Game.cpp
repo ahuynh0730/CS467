@@ -46,9 +46,7 @@ void Game::createRooms() {
 		pathName = "rooms/room" + std::to_string(i) + ".txt";
 		inFile.open(pathName);
 		inFile >> roomNumber >> up >> right >> down >> left;
-		//extra getline is needed to prevent reading the trailing '\n' at end of line for left room
-		std::getline(inFile, inputLine);
-		std::getline(inFile, inputLine);
+		
 		
 		//decrementing numbers to account for zero indexing
 		//numbers will be -1 if 0 was read in(or null)
@@ -58,9 +56,19 @@ void Game::createRooms() {
 		down--;
 		left--;
 
+		//reads in long description
+		//extra getline is needed to prevent reading the trailing '\n' at end of line for left room
+		std::getline(inFile, inputLine);
+		std::getline(inFile, inputLine);
+		rooms[roomNumber].setLongDescription(inputLine);
+
+
+		//reads in short description
+		std::getline(inFile, inputLine);
+		rooms[roomNumber].setShortDescription(inputLine);
+		
 
 		rooms[roomNumber].setRoomNumber(roomNumber + 1);
-		
 		//will assign pointer to correct room unless it is < 0
 		if (up > -1) {
 			rooms[roomNumber].connectUp(&(rooms[up]));
@@ -74,7 +82,7 @@ void Game::createRooms() {
 		if (left > -1) {
 			rooms[roomNumber].connectLeft(&(rooms[left]));
 		}
-		rooms[roomNumber].setLongDescription(inputLine);
+		
 
 		inFile.close();
 	}
