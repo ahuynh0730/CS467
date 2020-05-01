@@ -3,4 +3,5 @@
 -1
 12
 -1
-This is Room 13.
+This is Room 13's long description.
+This is Room 13's short description.

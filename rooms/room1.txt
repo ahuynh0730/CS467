@@ -3,4 +3,5 @@
 -1
 -1
 -1
-This is Room 1.
+This is Room 1's long description.
+This is Room 1's short description.

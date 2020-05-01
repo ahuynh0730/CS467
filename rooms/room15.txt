@@ -3,4 +3,6 @@
 -1
 -1
 14
-This is Room 15.
+This is Room 15's long description.
+This is Room 15's short description.
+
