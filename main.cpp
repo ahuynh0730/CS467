@@ -102,9 +102,10 @@ int main() {
 		break;
 	}
 
-
+	//runs until game is over
 	while (game1.getGameOverStatus() == false) {
-		
+		move(0, 0);
+		clrtoeol();
 		wclear(win);
 		wmove(win, 0, 0);
 		wprintw(win, game1.getCurrentRoom()->getLongDescription());
@@ -113,8 +114,22 @@ int main() {
 
 
 		getstr(playerInput);
-		if (strcmp("help", playerInput) == 0) {
+		if (strcmp("look", playerInput) == 0) {
+			wclear(win);
+			wrefresh(win);
+			getch();
+			wprintw(win, game1.getCurrentRoom()->getLongDescription());
+			wrefresh(win);
+		}
+		else if (strcmp("help", playerInput) == 0) {
 			game1.displayHelpList();
+		}
+		else if (strcmp("inventory", playerInput) == 0) {
+			game1.displayInventory();
+		}
+		else if (strcmp("savegame", playerInput) == 0) {
+			game1.saveGame();
+			break;
 		}
 
 	}

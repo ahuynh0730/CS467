@@ -8,10 +8,10 @@
 class Room{
 private:
 	int roomNumber;
-	Room* up;
-	Room* right;
-	Room* down;
-	Room* left;
+	Room* north;
+	Room* east;
+	Room* south;
+	Room* west;
 	char* longDescription;
 
 public:
@@ -21,7 +21,6 @@ public:
 	void connectDown(Room*);
 	void connectLeft(Room*);
 	void setRoomNumber(int);
-	void printRoomInfo();
 	int getRoomNumber();
 	void setLongDescription(std::string);
 	char* getLongDescription();

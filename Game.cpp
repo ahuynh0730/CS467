@@ -97,32 +97,6 @@ void Game::freeGame(){
 	}
 }
 
-void Game::displayHelpList(){
-	saveScreen();
-
-
-	//list of available commands
-	wmove(win, 0, 0);
-	wprintw(win, "These are available commands during gameplay.");
-	wprintw(win, "\n1. look : This repeats the long explanation of the room");
-	wprintw(win, "\n2. look at : This gives an explanation or the object.");
-	wprintw(win, "\n3. go : This allows you to travel to adjacent rooms.");
-	wprintw(win, "\n4. take : This allows you to put an object in your inventory.");
-	wprintw(win, "\n5. help : This will bring up the available commands during gameplay.");
-	wprintw(win, "\n6. inventory : This will list the contents of your inventory.");
-	wrefresh(win);
-
-	move(0, 0);
-	printw("Press any key to return to previous screen.");
-	refresh();
-	getch();
-
-	previousScreen();
-	wrefresh(win);
-	wrefresh(borderWindow);
-	refresh();
-}
-
 void Game::saveScreen(){
 	//opens a file and puts stdscr content in file
 	FILE* myFile;
@@ -266,6 +240,7 @@ int Game::displayMainScreen(){
 
 }
 
+//dummy function
 void Game::loadGame(){
 	
 	//clears and boxes window 
@@ -279,5 +254,59 @@ void Game::loadGame(){
 	getch();
 
 	gameOver = true;
+}
+
+void Game::displayHelpList() {
+	saveScreen();
+
+
+	//list of available commands
+	wmove(win, 0, 0);
+	wprintw(win, "These are available commands during gameplay.");
+	wprintw(win, "\n1. look : This repeats the long explanation of the room");
+	wprintw(win, "\n2. look at : This gives an explanation or the object.");
+	wprintw(win, "\n3. go : This allows you to travel to adjacent rooms.");
+	wprintw(win, "\n4. take : This allows you to put an object in your inventory.");
+	wprintw(win, "\n5. help : This will bring up the available commands during gameplay.");
+	wprintw(win, "\n6. inventory : This will list the contents of your inventory.");
+	wprintw(win, "\n7. savegame : This will allow you to save your game.");
+	wrefresh(win);
+
+	move(0, 0);
+	printw("Press any key to return to previous screen.");
+	refresh();
+	getch();
+
+	previousScreen();
+	wrefresh(win);
+	wrefresh(borderWindow);
+	refresh();
+}
+
+//dummy function
+void Game::displayInventory() {
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wprintw(win, "Displaying inventory.");
+	wprintw(win, "\n%s", hitButton);
+	wrefresh(win);
+	getch();
+
+	previousScreen();
+}
+
+
+//dummy function
+void Game::saveGame(){
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wprintw(win, "Game is being saved.");
+	wprintw(win, "\n%s", hitButton);
+	wrefresh(win);
+	getch();
 }
 

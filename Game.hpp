@@ -26,11 +26,13 @@ public:
 	Room* getCurrentRoom();
 	bool getGameOverStatus();
 	void freeGame();
-	void displayHelpList();
 	void saveScreen();
 	void previousScreen();
 	int displayMainScreen();
 	void loadGame();
+	void displayHelpList();
+	void displayInventory();
+	void saveGame();
 };
 
 #endif
