@@ -2,6 +2,8 @@
 #define ROOM_hpp
 
 #include <iostream>
+#include <string>
+#include <string.h>
 
 class Room{
 private:
@@ -10,6 +12,7 @@ private:
 	Room* right;
 	Room* down;
 	Room* left;
+	char* longDescription;
 
 public:
 	Room();
@@ -20,6 +23,9 @@ public:
 	void setRoomNumber(int);
 	void printRoomInfo();
 	int getRoomNumber();
+	void setLongDescription(std::string);
+	char* getLongDescription();
+	void freeRoom();
 
 };
 

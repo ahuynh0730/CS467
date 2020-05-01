@@ -1,6 +1,7 @@
 #ifndef GAME_hpp
 #define GAME_hpp
 
+#include <cmath>
 #include <curses.h>
 #include <dirent.h>
 #include <vector>
@@ -22,9 +23,14 @@ private:
 public:
 	void displayGameInfo();
 	void createRooms();
-	/*void startNewGame();
+	Room* getCurrentRoom();
+	bool getGameOverStatus();
+	void freeGame();
 	void displayHelpList();
-	void loadGame();*/
+	void saveScreen();
+	void previousScreen();
+	int displayMainScreen();
+	void loadGame();
 };
 
 #endif

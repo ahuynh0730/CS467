@@ -7,6 +7,7 @@ Room::Room() {
 	right = NULL;
 	down = NULL;
 	left = NULL;
+	longDescription = new char[1000];
 }
 
 
@@ -50,7 +51,18 @@ void Room::printRoomInfo(){
 
 }
 
-int Room::getRoomNumber()
-{
+int Room::getRoomNumber(){
 	return roomNumber;
+}
+
+void Room::setLongDescription(std::string input){
+	strcpy(longDescription, input.c_str());
+}
+
+char* Room::getLongDescription(){
+	return longDescription;
+}
+
+void Room::freeRoom(){
+	delete longDescription;
 }
