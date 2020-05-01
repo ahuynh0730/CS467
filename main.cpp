@@ -1,6 +1,7 @@
 #include <curses.h>
 #include <iostream>
 #include <string.h>
+#include <unistd.h>
 #include "common.hpp"
 #include "Game.hpp"
 #include "gameFunctions.hpp"
@@ -87,13 +88,19 @@ int main() {
 	clrtoeol();
 	refresh();
 	switch (menuChoice) {
+	
+	//option for starting new game
 	case 0:
 		game1.displayGameInfo();
 		game1.createRooms();
 		break;
+
+	//option for loading game
 	case 1:
 		game1.loadGame();
 		break;
+
+	//option for quitting game
 	case 2:
 		delwin(win);
 		delwin(borderWindow);
@@ -112,7 +119,7 @@ int main() {
 		wrefresh(win);
 		move(0, 0);
 
-
+		//gets player command and will tell player if the command is invalid
 		getstr(playerInput);
 		if (strcmp("look", playerInput) == 0) {
 			wclear(win);
@@ -133,6 +140,12 @@ int main() {
 		else if (strcmp("savegame", playerInput) == 0) {
 			game1.saveGame();
 			break;
+		}
+		else {
+			move(0, 0);
+			printw("Invalid command. Please try again.");
+			refresh();
+			usleep(1000000);
 		}
 
 	}
