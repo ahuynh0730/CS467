@@ -256,6 +256,20 @@ void Game::loadGame(){
 	gameOver = true;
 }
 
+void Game::lookAt() {
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wprintw(win, "Looking at .");
+	wprintw(win, "\n%s", hitButton);
+	wrefresh(win);
+	getch();
+
+	previousScreen();
+}
+
 void Game::displayHelpList() {
 	saveScreen();
 

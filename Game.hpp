@@ -30,6 +30,7 @@ public:
 	void previousScreen();
 	int displayMainScreen();
 	void loadGame();
+	void lookAt();
 	void displayHelpList();
 	void displayInventory();
 	void saveGame();

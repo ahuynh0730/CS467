@@ -121,6 +121,9 @@ int main() {
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
 			wrefresh(win);
 		}
+		else if (strncmp("look at ", playerInput, 8) == 0) {
+			game1.lookAt();
+		}
 		else if (strcmp("help", playerInput) == 0) {
 			game1.displayHelpList();
 		}
