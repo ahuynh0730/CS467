@@ -270,6 +270,21 @@ void Game::lookAt() {
 	previousScreen();
 }
 
+//dummy function
+void Game::take() {
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wprintw(win, "Taking .");
+	wprintw(win, "\n%s", hitButton);
+	wrefresh(win);
+	getch();
+
+	previousScreen();
+}
+
 void Game::displayHelpList() {
 	saveScreen();
 

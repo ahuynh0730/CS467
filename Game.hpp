@@ -31,6 +31,7 @@ public:
 	int displayMainScreen();
 	void loadGame();
 	void lookAt();
+	void take();
 	void displayHelpList();
 	void displayInventory();
 	void saveGame();

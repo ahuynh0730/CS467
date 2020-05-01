@@ -131,6 +131,9 @@ int main() {
 		else if (strncmp("look at ", playerInput, 8) == 0) {
 			game1.lookAt();
 		}
+		else if (strncmp("take ", playerInput, 5) == 0) {
+			game1.take();
+		}
 		else if (strcmp("help", playerInput) == 0) {
 			game1.displayHelpList();
 		}
