@@ -9,8 +9,12 @@ void Interactable::setName(std::string name_){
 	name = name_;
 }
 
-void Interactable::setDesc(std::string desc){
-	description = desc;
+void Interactable::setShortDesc(std::string desc){
+	shortDesc = desc;
+}
+
+void Interactable::setLongDesc(std::string desc){
+	longDesc = desc;
 }
 
 void Interactable::setRoom(Room* r){
@@ -29,8 +33,12 @@ std::string Interactable::getName(){
 	return name;
 }
 
-std::string Interactable::getDesc(){
-	return description;
+std::string Interactable::getShortDesc(){
+	return shortDesc;
+}
+
+std::string Interactable::getLongDesc(){
+	return longDesc;
 }
 
 Room* Interactable::getRoom(){
@@ -43,4 +51,12 @@ bool Interactable::getHoldable(){
 
 Game* Interactable::getGame(){
 	return game;
+}
+
+std::vector<std::string> Interactable::listUserOptions(){
+	return std::vector<std::string>{"Describe"};
+}
+
+std::string Interactable::callFunction(int n){
+	return longDesc;
 }

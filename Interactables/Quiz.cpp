@@ -38,11 +38,20 @@ bool Quiz::getIsCorrect(){
 }
 
 std::vector<std::string> Quiz::listUserOptions(){
-	return std::vector<std::string>{"Answer"};
+	return std::vector<std::string>{"Describe", "Answer"};
 }
 
 std::string Quiz::callFunction(int n){
-	return answer();
+	switch(n){
+		case 0:
+			return longDesc;
+			break;
+		case 1:
+			return answer();
+			break;
+		default:
+			return "You cannot do that.";
+	}
 }
 
 std::string answer(){

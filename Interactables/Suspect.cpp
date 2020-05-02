@@ -28,9 +28,18 @@ std::string Suspect::accuse(){
 }
 
 std::vector<std::string> Suspect::listUserOptions(){
-	return std::vector<std::string>{"Accuse"};
+	return std::vector<std::string>{"Describe", "Accuse"};
 }
 
 std::string Suspect::callFunction(int n){
-	return accuse();
+	switch(n){
+		case 0:
+			return longDesc;
+			break;
+		case 1:
+			return accuse();
+			break;
+		default:
+			return "You cannot do that.";
+	}
 }

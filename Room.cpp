@@ -54,7 +54,6 @@ char * Room::getShortDescription()
 	return shortDescription;
 }
 
-
 bool Room::addInteractable(Interactable*){
 	std::set<Interactable*>::iterator it = items.find(i);
 	if(it != items.end())
@@ -62,6 +61,7 @@ bool Room::addInteractable(Interactable*){
 	items.insert(i);
 	return true;
 }
+
 bool Room::removeInteractable(Interactable*){
 	std::set<Interactable*>::iterator it = items.find(i);
 	if(it == items.end())
