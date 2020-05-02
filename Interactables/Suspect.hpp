@@ -9,9 +9,10 @@ private:
 	int userOptions;
 public:
 	Suspect();
+	Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g);
 	std::vector<std::string> listUserOptions();
-	bool callFunction(int n);
-	bool getIsMurderer();
+	std::string callFunction(int n);
+	std::string accuse();
 };
 
 #endif

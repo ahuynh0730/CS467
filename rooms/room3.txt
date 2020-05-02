@@ -3,3 +3,5 @@
 4
 -1
 2
+This is Room 3's long description.
+This is Room 3's short description.

@@ -3,3 +3,5 @@
 9
 5
 -1
+This is Room 8's long description.
+This is Room 8's short description.

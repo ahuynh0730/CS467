@@ -3,3 +3,5 @@
 -1
 4
 6
+This is Room 7's long description.
+This is Room 7's short description.

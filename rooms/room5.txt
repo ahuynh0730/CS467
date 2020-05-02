@@ -3,3 +3,5 @@
 6
 2
 -1
+This is Room 5's long description.
+This is Room 5's short description.

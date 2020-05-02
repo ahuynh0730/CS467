@@ -3,3 +3,5 @@
 -1
 7
 9
+This is Room 10's long description.
+This is Room 10's short description.

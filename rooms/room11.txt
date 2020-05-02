@@ -3,3 +3,5 @@
 12
 10
 -1
+This is Room 11's long description.
+This is Room 11's short description.
