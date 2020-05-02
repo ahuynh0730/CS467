@@ -5,3 +5,11 @@
 5
 This is Room 6's long description.
 This is Room 6's short description.
+north
+Room 9
+west
+Room 7
+south
+Room 3
+west
+Room 5

@@ -5,3 +5,11 @@ Room to the bottom
 Room to the left
 Long description
 Short description
+Either north or null
+Description describing room to north or null
+Either east or null
+Description describing room to east or null
+Either south or null
+Description describing room to south or null
+Either east or null
+Description describing room to west or null

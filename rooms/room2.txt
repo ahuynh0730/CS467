@@ -5,3 +5,11 @@
 -1
 This is Room 2's long description.
 This is Room 2's short description.
+north
+Room 5
+east
+null
+null
+null
+null
+null

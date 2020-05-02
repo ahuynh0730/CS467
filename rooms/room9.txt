@@ -5,3 +5,11 @@
 8
 This is Room 9's long description.
 This is Room 9's short description.
+null
+null
+west
+Room 10
+south
+Room 6
+west
+Room 8

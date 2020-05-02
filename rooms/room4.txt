@@ -5,3 +5,11 @@
 3
 This is Room 4's long description.
 This is Room 4's short description.
+north
+Room 7
+null
+null
+null
+null
+east
+Room 3

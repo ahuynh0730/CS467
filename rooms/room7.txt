@@ -5,3 +5,11 @@
 6
 This is Room 7's long description.
 This is Room 7's short description.
+north
+Room 10
+null
+null
+south
+Room 4
+west
+Room 6

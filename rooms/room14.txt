@@ -5,3 +5,11 @@
 12
 This is Room 14's long description.
 This is Room 13's short description.
+null
+null
+west
+Room 15
+null
+null
+east
+Room 12

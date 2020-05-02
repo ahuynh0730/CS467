@@ -5,3 +5,11 @@
 2
 This is Room 3's long description.
 This is Room 3's short description.
+north
+Room 6
+east
+Room 4
+null
+null
+west
+Room 2

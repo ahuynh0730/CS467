@@ -5,3 +5,11 @@
 -1
 This is Room 5's long description.
 This is Room 5's short description.
+north
+Room 8
+west
+Room 6
+south
+Room 2
+null
+null
