@@ -2,11 +2,9 @@
 #define QUIZ_hpp
 
 #include "Interactable.hpp"
-#include<set>
 
 class Quiz: public Interactable{
 private:
-	std::set<Interactable*> items;
 	std::string successString;
 	std::string failString;
 	std::string correctAnswer;
@@ -14,8 +12,6 @@ private:
 public:
 	Quiz();
 	Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h);
-	bool addItem(Interactable* i);
-	bool removeItem(Interactable*);
 	void setSuccessString(std::string s);
 	void setFailString(std::string s);
 	void setIsCorrect(bool c);

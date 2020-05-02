@@ -46,6 +46,7 @@
         "typeinfo": "cpp",
         "atomic": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "string": "cpp"
     }
 }

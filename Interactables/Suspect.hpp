@@ -6,9 +6,11 @@
 class Suspect: public Interactable{
 private:
 	bool isMurderer;
+	//will add all the suspect details here
 public:
 	Suspect();
 	Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g);
+	std::string getDesc();
 	bool getIsMurderer();
 	void setIsMurderer(bool m);
 	std::vector<std::string> listUserOptions();

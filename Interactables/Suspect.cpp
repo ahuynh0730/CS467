@@ -5,6 +5,10 @@ Suspect::Suspect(): Interactable{}, isMurderer{false}{}
 Suspect::Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g):
 	Interactable{std::string name_, std::string desc, Room* r, Game* g, false}, isMurderer{m}{}
 
+std::string Suspect::getDesc(){
+	//will send a concatenation of the suspects details
+}
+
 bool Suspect::getIsMurderer(){
 	return isMurderer;
 }

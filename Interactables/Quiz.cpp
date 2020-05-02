@@ -5,22 +5,6 @@ Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, i
 Quiz::Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c):
 	Interactable{std::string name_, std::string desc, Room* r, Game* g, h}, successString{"default"}, failString{"default"}, items{std::vector<Interactable*>{}}, isCorrect{c}  {}
 
-bool Quiz::addItem(Interactable* i){
-	std::set<Interactable*>::iterator it = items.find(i);
-	if(it != items.end())
-		return false;
-	items.insert(i);
-	return true;
-}
-
-bool Quiz::removeItem(Interactable*){
-	std::set<Interactable*>::iterator it = items.find(i);
-	if(it == items.end())
-		return false;
-	items.erase(i);
-	return true;
-}
-
 void Quiz::setSuccessString(std::string s){
 	successString = s;
 }
@@ -62,5 +46,5 @@ std::string Quiz::callFunction(int n){
 }
 
 std::string answer(){
-	
+
 }

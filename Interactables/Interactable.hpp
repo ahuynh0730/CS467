@@ -11,6 +11,7 @@ protected:
 	std::string name;
 	std::string description;
 	Room* room; //points to the room this interactable is in. if null, interactable is held by player
+	Room* originalRoom;
 	bool holdable;
 	Game* game;
 public:
@@ -22,7 +23,7 @@ public:
 	void setHoldable(Game* g);
 	void setGame(bool h);
 	std::string getName();
-	std::string getDesc();
+	virtual std::string getDesc();
 	Room* getRoom();
 	bool getHoldable();
 	Game* getGame();

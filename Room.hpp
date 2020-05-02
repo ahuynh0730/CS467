@@ -5,6 +5,7 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <set>
 
 class Room{
 private:
@@ -16,6 +17,7 @@ private:
 	char* longDescription;
 	char* shortDescription;
 	std::vector<std::string> travelCommands;
+	std::set<Interactable*> items;
 
 public:
 	Room();
@@ -29,8 +31,9 @@ public:
 	char* getLongDescription();
 	void setShortDescription(std::string);
 	char* getShortDescription();
+	bool addInteractable(Interactable*);
+	bool removeInteractable(Interactable*);
 	void freeRoom();
-
 };
 
 #endif
