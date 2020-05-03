@@ -139,6 +139,9 @@ int main() {
 			char* destination = &(playerInput[3]);
 			game1.travelTo(destination);
 		}
+		else if (game1.getCurrentRoom()->getTravelVectorPosition((std::string) playerInput) != -1) {
+			game1.travelTo(playerInput);
+		}
 		else if (strncmp("take ", playerInput, 5) == 0) {
 			game1.take();
 		}
