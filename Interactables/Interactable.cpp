@@ -3,7 +3,7 @@
 Interactable::Interactable(): name{"default"}, description{"default"}, room{nullptr}, holdable{false}, game{nullptr} {}
 
 Interactable::Interactable(std::string name_, std::string desc, Room* r, Game* g, bool h):
-	name{name_}, description{desc}, room{r}, holdable{h}, game{g} {}
+	name{name_}, description{desc}, room{r}, originalRoom{r}, holdable{h}, game{g} {}
 
 void Interactable::setName(std::string name_){
 	name = name_;
@@ -19,6 +19,10 @@ void Interactable::setLongDesc(std::string desc){
 
 void Interactable::setRoom(Room* r){
 	room = r;
+}
+
+void Interactable::setOriginalRoom(Room* r){
+	originalRoom = r;
 }
 
 void Interactable::setHoldable(bool h){
@@ -43,6 +47,10 @@ std::string Interactable::getLongDesc(){
 
 Room* Interactable::getRoom(){
 	return room;
+}
+
+Room* Interactable::getOriginalRoom(){
+	return originalRoom;
 }
 
 bool Interactable::getHoldable(){

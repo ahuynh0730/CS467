@@ -22,12 +22,14 @@ public:
 	void setShortDesc(std::string desc);
 	void setLongDesc(std::string desc);
 	void setRoom(Room* r);
+	void setOriginalRoom(Room* r);
 	void setHoldable(Game* g);
 	void setGame(bool h);
 	std::string getName();
 	std::string getShortDesc();
 	virtual std::string getLongDesc();
 	Room* getRoom();
+	Room* getOriginalRoom();
 	bool getHoldable();
 	Game* getGame();
 	virtual std::vector<std::string> listUserOptions(); //send list of things the user can do. the index of the action is what is used in calling callFunction
