@@ -7,7 +7,7 @@ This is Room 9's long description.
 This is Room 9's short description.
 null
 null
-west
+east
 Room 10
 south
 Room 6

@@ -4,12 +4,12 @@
 -1
 12
 This is Room 14's long description.
-This is Room 13's short description.
-null
-null
-west
-Room 15
+This is Room 14's short description.
 null
 null
 east
+Room 15
+null
+null
+west
 Room 12

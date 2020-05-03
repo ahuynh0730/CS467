@@ -11,5 +11,5 @@ null
 null
 null
 null
-east
+west
 Room 3

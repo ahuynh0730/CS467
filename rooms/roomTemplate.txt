@@ -11,5 +11,5 @@ Either east or null
 Description describing room to east or null
 Either south or null
 Description describing room to south or null
-Either east or null
+Either west or null
 Description describing room to west or null

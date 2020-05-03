@@ -7,7 +7,7 @@ This is Room 5's long description.
 This is Room 5's short description.
 north
 Room 8
-west
+east
 Room 6
 south
 Room 2

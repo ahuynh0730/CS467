@@ -8,8 +8,8 @@ This is Room 2's short description.
 north
 Room 5
 east
-null
-null
-null
+Room 3
+south
+Room 1
 null
 null

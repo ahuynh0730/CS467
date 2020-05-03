@@ -7,7 +7,7 @@ This is Room 6's long description.
 This is Room 6's short description.
 north
 Room 9
-west
+east
 Room 7
 south
 Room 3

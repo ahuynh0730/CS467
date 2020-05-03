@@ -12,4 +12,4 @@ null
 south
 Room 7
 west
-Room 6
+Room 9
