@@ -162,6 +162,9 @@ int main() {
 			game1.saveGame();
 			break;
 		}
+		else if (strcmp("quitgame", playerInput) == 0) {
+			game1.setGameOverStatus(true);
+		}
 		else {
 			move(0, 0);
 			printw("Invalid command. Please try again.");
