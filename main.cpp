@@ -125,6 +125,9 @@ int main() {
 
 		//gets player command and will tell player if the command is invalid
 		getstr(playerInput);
+		for (unsigned int i = 0; i < strlen(playerInput); i++) {
+			playerInput[i] = tolower(playerInput[i]);
+		}
 		if (strcmp("look", playerInput) == 0) {
 			game1.saveScreen();
 			wclear(win);
