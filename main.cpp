@@ -130,6 +130,8 @@ int main() {
 			wclear(win);
 			wrefresh(win);
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
+			wmove(win, 1, 0);
+			wprintw(win, hitButton);
 			wrefresh(win);
 			getch();
 			game1.previousScreen();
