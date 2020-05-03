@@ -38,9 +38,6 @@ public:
 	void displayInventory();
 	void saveGame();
 
-	std::vector<Room> getRoomsVector() {
-		return rooms;
-	}
 };
 
 #endif

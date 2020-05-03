@@ -21,12 +21,6 @@ int main() {
 	//}
 	//game1.travelTo((char*)"north\0");
 	//game1.travelTo(direction);
-	/*for (unsigned int i = 0; i < game1.getRoomsVector().size(); i++) {
-		for (unsigned int j = 0; j < game1.getRoomsVector()[i].getTravelCommandsVector().size(); j++) {
-			std::cout << game1.getRoomsVector()[i].getTravelCommandsVector()[j] << std::endl;
-		}
-		std::cout << std::endl;
-	}*/
 
 	
 	//below is formatting code to be uncommented later

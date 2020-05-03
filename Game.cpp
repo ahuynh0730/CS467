@@ -287,28 +287,9 @@ void Game::lookAt() {
 void Game::travelTo(char* destination){
 	
 	std::string dest(destination);
-	/*move(0, 0);
-	clrtoeol();
-	printw(destination);
-	refresh();
-	usleep(1000000);*/
 	int travelNumber = currentRoom->getTravelVectorPosition(dest);
-	//std::cout << currentRoom->getTravelVectorPosition(dest) << std::endl;
-	//std::cout << currentRoom->getTravelVectorPosition(dest) << std::endl;
-	/*for (unsigned int i = 0; i < currentRoom->getTravelCommandsVector().size(); i++) {
-		std::cout << (dest) << ", " << (currentRoom->getTravelCommandsVector()[i]) << std::endl;
-		std::cout << ".n" << std::endl;
-		if ((currentRoom->getTravelCommandsVector()[i]).compare(dest) == 0) {
-			std::cout << "found" << std::endl;
-			break;
-		}
-		if (i == currentRoom->getTravelCommandsVector().size() - 1)
-			std::cout << "not found" << std::endl;
-	}
-	*/
-	//std::cout << dest << " " << currentRoom->getTravelVectorPosition(dest) << std::endl;
 	
-	//the following works, but needs correct value sent from getTravelVectorPosition
+	//will set current room based on travelNumber
 	switch (travelNumber) {
 		case 0:
 		case 1:
