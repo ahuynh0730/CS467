@@ -126,11 +126,13 @@ int main() {
 		//gets player command and will tell player if the command is invalid
 		getstr(playerInput);
 		if (strcmp("look", playerInput) == 0) {
+			game1.saveScreen();
 			wclear(win);
 			wrefresh(win);
-			getch();
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
 			wrefresh(win);
+			getch();
+			game1.previousScreen();
 		}
 		else if (strncmp("look at ", playerInput, 8) == 0) {
 			game1.lookAt();
