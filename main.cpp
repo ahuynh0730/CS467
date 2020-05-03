@@ -13,12 +13,22 @@ const char* hitButton = "Please enter any button to continue.";
 
 
 int main() {
-	Game game1;
-	game1.createRooms();
-	std::cout << game1.getCurrentRoom()->getLongDescription() << std::endl;
-	std::cout << game1.getCurrentRoom()->getShortDescription() << std::endl;
+	//char* direction = (char*)"north";
+	//Game game1;
+	//game1.createRooms();
+	//for (unsigned int i = 0; i < game1.getCurrentRoom()->getTravelCommandsVector().size(); i++) {
+		//std::cout << game1.getCurrentRoom()->getTravelCommandsVector()[i] << std::endl;
+	//}
+	//game1.travelTo((char*)"north\0");
+	//game1.travelTo(direction);
+	/*for (unsigned int i = 0; i < game1.getRoomsVector().size(); i++) {
+		for (unsigned int j = 0; j < game1.getRoomsVector()[i].getTravelCommandsVector().size(); j++) {
+			std::cout << game1.getRoomsVector()[i].getTravelCommandsVector()[j] << std::endl;
+		}
+		std::cout << std::endl;
+	}*/
 
-	/*
+	
 	//below is formatting code to be uncommented later
 	//include initializing screen, making sure screen is big enough, creating a new screen, and displaying the main menu
 	const char* makeTaller = "Please make your console screen taller and try again.";
@@ -116,7 +126,7 @@ int main() {
 		clrtoeol();
 		wclear(win);
 		wmove(win, 0, 0);
-		wprintw(win, game1.getCurrentRoom()->getLongDescription());
+		wprintw(win, game1.getCurrentRoom()->getDescription());
 		wrefresh(win);
 		move(0, 0);
 
@@ -131,6 +141,10 @@ int main() {
 		}
 		else if (strncmp("look at ", playerInput, 8) == 0) {
 			game1.lookAt();
+		}
+		else if (strncmp("go ", playerInput, 2) == 0) {
+			char* destination = &(playerInput[3]);
+			game1.travelTo(destination);
 		}
 		else if (strncmp("take ", playerInput, 5) == 0) {
 			game1.take();
@@ -162,7 +176,7 @@ int main() {
 
 
 	//deallocates memory and ends ncurses
-	endwin();*/
+	endwin();
 	game1.freeGame();
 	
 

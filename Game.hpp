@@ -10,6 +10,7 @@
 #include <string>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "common.hpp"
 #include "Room.hpp"
 
@@ -31,10 +32,15 @@ public:
 	int displayMainScreen();
 	void loadGame();
 	void lookAt();
+	void travelTo(char*);
 	void take();
 	void displayHelpList();
 	void displayInventory();
 	void saveGame();
+
+	std::vector<Room> getRoomsVector() {
+		return rooms;
+	}
 };
 
 #endif

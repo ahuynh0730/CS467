@@ -9,6 +9,7 @@ Room::Room() {
 	west = NULL;
 	longDescription = new char[1000];
 	shortDescription = new char[1000];
+	visitedBefore = false;
 }
 
 
@@ -49,10 +50,51 @@ void Room::setShortDescription(std::string input){
 	strcpy(shortDescription, input.c_str());
 }
 
-char * Room::getShortDescription()
+char * Room::getDescription()
 {
-	return shortDescription;
+	if (visitedBefore == false) {
+		visitedBefore = true;
+		return longDescription;
+	}
+	else {
+		return shortDescription;
+	}
 }
+
+std::vector<std::string> Room::getTravelCommandsVector()
+{
+	return travelCommands;
+}
+
+void Room::addTravelCommand(std::string input){
+	travelCommands.push_back(input);
+}
+
+Room * Room::getNorthRoom(){
+	return north;
+}
+
+Room * Room::getEastRoom() {
+	return east;
+}
+
+Room* Room::getSouthRoom() {
+	return south;
+}
+
+Room* Room::getWestRoom() {
+	return west;
+}
+
+int Room::getTravelVectorPosition(std::string input){
+	for (unsigned int i = 0; i < travelCommands.size(); i++) {
+		if (travelCommands[i].find(input) != std::string::npos) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 
 void Room::freeRoom(){
 	delete longDescription;

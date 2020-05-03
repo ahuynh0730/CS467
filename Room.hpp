@@ -16,6 +16,7 @@ private:
 	char* longDescription;
 	char* shortDescription;
 	std::vector<std::string> travelCommands;
+	bool visitedBefore;
 
 public:
 	Room();
@@ -28,7 +29,14 @@ public:
 	void setLongDescription(std::string);
 	char* getLongDescription();
 	void setShortDescription(std::string);
-	char* getShortDescription();
+	char* getDescription();
+	std::vector<std::string> getTravelCommandsVector();
+	void addTravelCommand(std::string);
+	Room* getNorthRoom();
+	Room* getEastRoom();
+	Room* getSouthRoom();
+	Room* getWestRoom();
+	int getTravelVectorPosition(std::string);
 	void freeRoom();
 
 };

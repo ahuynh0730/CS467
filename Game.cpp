@@ -66,6 +66,12 @@ void Game::createRooms() {
 		//reads in short description
 		std::getline(inFile, inputLine);
 		rooms[roomNumber].setShortDescription(inputLine);
+
+		//reads in commands user can enter for traveling
+		for (int i = 0; i < 8; i++) {
+			std::getline(inFile, inputLine);
+			rooms[roomNumber].addTravelCommand(inputLine);
+		}
 		
 
 		rooms[roomNumber].setRoomNumber(roomNumber + 1);
@@ -276,6 +282,58 @@ void Game::lookAt() {
 	getch();
 
 	previousScreen();
+}
+
+void Game::travelTo(char* destination){
+	
+	std::string dest(destination);
+	/*move(0, 0);
+	clrtoeol();
+	printw(destination);
+	refresh();
+	usleep(1000000);*/
+	int travelNumber = currentRoom->getTravelVectorPosition(dest);
+	//std::cout << currentRoom->getTravelVectorPosition(dest) << std::endl;
+	//std::cout << currentRoom->getTravelVectorPosition(dest) << std::endl;
+	/*for (unsigned int i = 0; i < currentRoom->getTravelCommandsVector().size(); i++) {
+		std::cout << (dest) << ", " << (currentRoom->getTravelCommandsVector()[i]) << std::endl;
+		std::cout << ".n" << std::endl;
+		if ((currentRoom->getTravelCommandsVector()[i]).compare(dest) == 0) {
+			std::cout << "found" << std::endl;
+			break;
+		}
+		if (i == currentRoom->getTravelCommandsVector().size() - 1)
+			std::cout << "not found" << std::endl;
+	}
+	*/
+	//std::cout << dest << " " << currentRoom->getTravelVectorPosition(dest) << std::endl;
+	
+	//the following works, but needs correct value sent from getTravelVectorPosition
+	switch (travelNumber) {
+		case 0:
+		case 1:
+			currentRoom = currentRoom->getNorthRoom();
+			break;
+		case 2:
+		case 3:
+			currentRoom = currentRoom->getEastRoom();
+			break;
+		case 4:
+		case 5:
+			currentRoom = currentRoom->getSouthRoom();
+			break;
+		case 6:
+		case 7:
+			currentRoom = currentRoom->getWestRoom();
+			break;
+		default:
+			move(0, 0);
+			printw("Invalid location.");
+			refresh();
+			usleep(1000000);
+			break;
+	}
+	
 }
 
 //dummy function
