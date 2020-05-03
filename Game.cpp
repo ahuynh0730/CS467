@@ -105,6 +105,10 @@ bool Game::getGameOverStatus(){
 	return gameOver;
 }
 
+void Game::setGameOverStatus(bool status){
+	gameOver = status;
+}
+
 void Game::freeGame(){
 	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i].freeRoom();

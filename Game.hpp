@@ -26,6 +26,7 @@ public:
 	void createRooms();
 	Room* getCurrentRoom();
 	bool getGameOverStatus();
+	void setGameOverStatus(bool status);
 	void freeGame();
 	void saveScreen();
 	void previousScreen();

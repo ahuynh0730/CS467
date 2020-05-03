@@ -5,6 +5,10 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <set>
+
+//#include "Interactables/Interactable.hpp"
+class Interactable; //had to use forward declaration since Room and Interactable include eachother
 
 class Room{
 private:
@@ -17,6 +21,7 @@ private:
 	char* shortDescription;
 	std::vector<std::string> travelCommands;
 	bool visitedBefore;
+	std::set<Interactable*> items;
 
 public:
 	Room();
@@ -37,8 +42,9 @@ public:
 	Room* getSouthRoom();
 	Room* getWestRoom();
 	int getTravelVectorPosition(std::string);
+	bool addInteractable(Interactable*);
+	bool removeInteractable(Interactable*);
 	void freeRoom();
-
 };
 
 #endif

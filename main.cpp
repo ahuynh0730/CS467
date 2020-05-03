@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include "common.hpp"
 #include "Game.hpp"
-#include "gameFunctions.hpp"
 
 WINDOW* stdscr;
 WINDOW* win;
