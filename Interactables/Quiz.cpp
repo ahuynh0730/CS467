@@ -55,5 +55,17 @@ std::string Quiz::callFunction(int n){
 }
 
 std::string answer(){
+	std::string ans;
+	getstr(ans);
+	for (int i = 0; i < std::strlen(ans); i++) {
+		ans[i] = std::tolower(ans[i]);
 
+	if(std::strcmp(ans, correctAnswer) == 0){
+		isCorrect = true;
+		return successString;
+	}
+	else{
+		isCorrect = false;
+		return failString;
+	}
 }
