@@ -350,6 +350,7 @@ void Game::displayHelpList() {
 	wprintw(win, "\n5. help : This will bring up the available commands during gameplay.");
 	wprintw(win, "\n6. inventory : This will list the contents of your inventory.");
 	wprintw(win, "\n7. savegame : This will allow you to save your game.");
+	wprintw(win, "\n8. quitgame : This allows the player to quit at any time.");
 	wrefresh(win);
 
 	move(0, 0);
