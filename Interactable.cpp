@@ -1,9 +1,9 @@
 #include "Interactable.hpp"
 
-Interactable::Interactable(): name{"default"}, description{"default"}, room{nullptr}, holdable{false}, game{nullptr} {}
+Interactable::Interactable(): name{"default"}, shortDesc{"default"}, longDesc{"default"}, room{nullptr}, holdable{false}, game{nullptr} {}
 
 Interactable::Interactable(std::string name_, std::string desc, Room* r, Game* g, bool h):
-	name{name_}, description{desc}, room{r}, originalRoom{r}, holdable{h}, game{g} {}
+	name{name_}, shortDesc{desc}, longDesc{desc}, room{r}, originalRoom{r}, holdable{h}, game{g} {}
 
 void Interactable::setName(std::string name_){
 	name = name_;

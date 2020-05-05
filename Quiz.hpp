@@ -11,7 +11,7 @@ private:
 	bool isCorrect;
 public:
 	Quiz();
-	Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h);
+	Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c);
 	void setSuccessString(std::string s);
 	void setFailString(std::string s);
 	void setIsCorrect(bool c);
