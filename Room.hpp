@@ -7,8 +7,8 @@
 #include <vector>
 #include <set>
 
-//#include "Interactables/Interactable.hpp"
-class Interactable; //had to use forward declaration since Room and Interactable include eachother
+//had to use forward declaration since Room and Interactable include eachother
+class Interactable;
 
 class Room{
 private:
