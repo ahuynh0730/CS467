@@ -30,7 +30,30 @@ void Game::displayGameInfo() {
 
 }
 
+void Game::createInteractables() {
+	/*
+	interactables.insert(std::pair<std::string, Interactable*>("Adam", new Interactable("Adam", "Adam's description", nullptr, this, false)));
+	interactables.insert(std::pair<std::string, Interactable*>("Sofia", new Suspect(true, "Sofia", "Sofia's description", nullptr, this)));
+	interactables.insert(std::pair<std::string, Interactable*>("Lucas", new Suspect(false, "Lucas", "Lucas's description", nullptr, this)));
+	interactables.insert(std::pair<std::string, Interactable*>("Daniel", new Suspect(false, "Daniel", "Daniel's description", nullptr, this)));
+	interactables.insert(std::pair<std::string, Interactable*>("Chris", new Suspect(false, "Chris", "Chris's description", nullptr, this)));
+	interactables.insert(std::pair<std::string, Interactable*>("Jack", new Suspect(false, "Jack", "Jack's description", nullptr, this)));
+	interactables.insert(std::pair<std::string, Interactable*>("Tiana", new Suspect(false, "Tiana", "Tiana's description", nullptr, this)));
+	*/
+}
+
+void Game::freeInteractables() {
+	/*
+	for(std::map<std::string, Interactable*>::iterator it = interactables.begin(); it != interactables.end(); it++){
+		delete it->second;
+	}
+	interactables.clear();
+	*/
+}
+
 void Game::createRooms() {
+	createInteractables();
+
 	std::ifstream inFile;
 	std::string inputLine;
 	std::string pathName;
@@ -110,6 +133,8 @@ void Game::setGameOverStatus(bool status){
 }
 
 void Game::freeGame(){
+	freeInteractables();
+
 	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i].freeRoom();
 	}
