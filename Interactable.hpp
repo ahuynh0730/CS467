@@ -3,8 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "../Room.hpp"
-#include "../Game.hpp"
+#include "Room.hpp"
+#include "Game.hpp"
 
 class Interactable{
 protected:
@@ -23,8 +23,8 @@ public:
 	void setLongDesc(std::string desc);
 	void setRoom(Room* r);
 	void setOriginalRoom(Room* r);
-	void setHoldable(Game* g);
-	void setGame(bool h);
+	void setHoldable(bool h);
+	void setGame(Game* g);
 	std::string getName();
 	std::string getShortDesc();
 	virtual std::string getLongDesc();

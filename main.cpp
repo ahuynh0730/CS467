@@ -2,8 +2,12 @@
 #include <iostream>
 #include <string.h>
 #include <unistd.h>
+#include <map>
 #include "common.hpp"
 #include "Game.hpp"
+#include "Interactable.hpp"
+#include "Suspect.hpp"
+#include "Quiz.hpp"
 
 WINDOW* stdscr;
 WINDOW* win;
@@ -113,6 +117,33 @@ int main() {
 		break;
 	}
 
+
+
+	std::map<std::string, Interactable*> interactables;
+	std::map<std::string, Interactable*>::iterator it;
+	interactables.insert(std::pair<std::string, Interactable*>("Adam", new Interactable("Adam", "Adam's description", nullptr, &game1, false)));
+	interactables.insert(std::pair<std::string, Interactable*>("Sofia", new Suspect(true, "Sofia", "Sofia's description", nullptr, &game1)));
+	interactables.insert(std::pair<std::string, Interactable*>("Lucas", new Suspect(false, "Lucas", "Lucas's description", nullptr, &game1)));
+	interactables.insert(std::pair<std::string, Interactable*>("Daniel", new Suspect(false, "Daniel", "Daniel's description", nullptr, &game1)));
+	interactables.insert(std::pair<std::string, Interactable*>("Chris", new Suspect(false, "Chris", "Chris's description", nullptr, &game1)));
+	interactables.insert(std::pair<std::string, Interactable*>("Jack", new Suspect(false, "Jack", "Jack's description", nullptr, &game1)));
+	interactables.insert(std::pair<std::string, Interactable*>("Tiana", new Suspect(false, "Tiana", "Tiana's description", nullptr, &game1)));
+	
+	it = interactables.find("Adam");
+	if(it != interactables.end()){
+		std::cout<<it->second->getName()<<':'<<it->second->callFunction(0)<<it->second->getHoldable()<<std::endl;
+	}
+	it = interactables.find("Sofia");
+	if(it != interactables.end()){
+		std::cout<<it->second->getName()<<':'<<it->second->getShortDesc()<<it->second->callFunction(1)<<std::endl;
+	}
+	it = interactables.find("Tiana");
+	if(it != interactables.end()){
+		std::cout<<it->second->getName()<<':'<<it->second->getShortDesc()<<it->second->callFunction(1)<<std::endl;
+	}
+
+/*
+
 	//runs until game is over
 	while (game1.getGameOverStatus() == false) {
 		move(0, 0);
@@ -190,7 +221,7 @@ int main() {
 	game1.freeGame();
 	
 
-
+*/
 	return 0;
 }
 

@@ -3,10 +3,11 @@
 Suspect::Suspect(): Interactable{}, isMurderer{false}{}
 
 Suspect::Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g):
-	Interactable{std::string name_, std::string desc, Room* r, Game* g, false}, isMurderer{m}{}
+	Interactable{name_, desc, r, g, false}, isMurderer{m}{}
 
 std::string Suspect::getDesc(){
 	//will send a concatenation of the suspects details
+	return "";
 }
 
 bool Suspect::getIsMurderer(){
@@ -18,12 +19,12 @@ void Suspect::setIsMurderer(bool m){
 }
 
 std::string Suspect::accuse(){
-	game->setGameOver(true);
+	game->setGameOverStatus(true);
 	if(isMurderer){
-		return "You chose correctly."
+		return "You chose correctly.";
 	}
 	else{
-		return "You chose incorrectly."
+		return "You chose incorrectly.";
 	}
 }
 
