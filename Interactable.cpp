@@ -3,8 +3,8 @@
 Interactable::Interactable() {
 	name = new char[1000];
 	desc = new char[1000];
-	name = "default";
-	desc = "default";
+	name = (char*)"default";
+	desc = (char*)"default";
 }
 
 Interactable::Interactable(std::string nameIn, std::string descriptionIn) {
