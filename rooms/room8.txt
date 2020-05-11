@@ -13,3 +13,4 @@ south
 Room 5
 null
 null
+0

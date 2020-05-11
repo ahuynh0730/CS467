@@ -13,3 +13,4 @@ south
 Room 6
 west
 Room 8
+0

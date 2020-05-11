@@ -13,3 +13,4 @@ south
 Room 10
 null
 null
+0

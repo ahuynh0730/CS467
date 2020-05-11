@@ -13,3 +13,4 @@ south
 Room 12
 null
 null
+0

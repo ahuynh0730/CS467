@@ -13,3 +13,6 @@ Either south or null
 Description describing room to south or null
 Either west or null
 Description describing room to west or null
+Number of interactables
+Type of first interactable
+	1 = Suspect

@@ -13,3 +13,4 @@ south
 Room 7
 west
 Room 9
+0
