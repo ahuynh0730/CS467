@@ -337,8 +337,22 @@ void Game::lookAt(char* object) {
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
-	wprintw(win, "Looking at %s.", object);
-	wprintw(win, "\n%s", hitButton);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1) {
+		wmove(win, 0, 0);
+		wprintw(win, currentRoom->getItemsList()[position]->getName());
+		wmove(win, 1, 0);
+		wprintw(win, currentRoom->getItemsList()[position]->getDescription());
+		wrefresh(win);
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "That is an invalid object.");
+	}
+	wmove(win, 2, 0);
+	wprintw(win, hitButton);
 	wrefresh(win);
 	getch();
 

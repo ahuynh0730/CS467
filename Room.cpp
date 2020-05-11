@@ -95,6 +95,16 @@ int Room::getTravelVectorPosition(std::string input){
 	return -1;
 }
 
+int Room::getItemsListPosition(std::string input) {
+	for (unsigned int i = 0; i < items.size(); i++) {
+		std::string name = items[i]->getName();
+		if (name.find(input) != std::string::npos) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 void Room::addInteractable(Interactable* i){
 	items.push_back(i);
 	/*std::set<Interactable*>::iterator it = items.find(i);
