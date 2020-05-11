@@ -95,22 +95,33 @@ int Room::getTravelVectorPosition(std::string input){
 	return -1;
 }
 
-bool Room::addInteractable(Interactable* i){
-	std::set<Interactable*>::iterator it = items.find(i);
+void Room::addInteractable(Interactable* i){
+	items.push_back(i);
+	/*std::set<Interactable*>::iterator it = items.find(i);
 	if(it != items.end())
 		return false;
 	items.insert(i);
-	return true;
+	return true;*/
 }
 
 bool Room::removeInteractable(Interactable* i){
+	/*
 	std::set<Interactable*>::iterator it = items.find(i);
 	if(it == items.end())
 		return false;
 	items.erase(i);
 	return true;	
+	*/
+	return true;
 }
 
+std::vector<Interactable*> Room::getItemsList() {
+	return items;
+}
+
+int Room::getNumberItems() {
+	return numberItems;
+}
 
 void Room::freeRoom(){
 	delete longDescription;

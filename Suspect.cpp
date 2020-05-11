@@ -1,7 +1,13 @@
 #include "Suspect.hpp"
 
-Suspect::Suspect(): Interactable{}, isMurderer{false}{}
+Suspect::Suspect() {
+	isMurderer = false;
+}
 
+Suspect::Suspect(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
+	isMurderer = false;
+}
+/*
 Suspect::Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g):
 	Interactable{name_, desc, r, g, false}, isMurderer{m}{}
 
@@ -43,4 +49,6 @@ std::string Suspect::callFunction(int n){
 		default:
 			return "You cannot do that.";
 	}
+	
 }
+*/

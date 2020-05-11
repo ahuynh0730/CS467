@@ -52,16 +52,18 @@ void Game::freeInteractables() {
 }
 
 void Game::createRooms() {
-	createInteractables();
+	//createInteractables();
 
 	std::ifstream inFile;
 	std::string inputLine;
 	std::string pathName;
-	int roomNumber, up, right, down, left;
+	int roomNumber, up, right, down, left, numberInteractables, interactableType;
 
 	for (int i = 0; i < 15; i++) {
 		rooms.push_back(Room());
 	}
+
+	currentRoom = &(rooms[0]);
 	
 
 	
@@ -91,9 +93,34 @@ void Game::createRooms() {
 		rooms[roomNumber].setShortDescription(inputLine);
 
 		//reads in commands user can enter for traveling
-		for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
 			std::getline(inFile, inputLine);
 			rooms[roomNumber].addTravelCommand(inputLine);
+		}
+
+		//reads in number of interactables the room will start with
+		inFile >> numberInteractables;
+
+		//loop that reads in object descriptions and creates them
+		std::string name;
+		std::string description;
+		Interactable* objectPointer = NULL;
+		for (int j = 0; j < numberInteractables; j++) {
+			inFile >> interactableType;
+			switch (interactableType) {
+				//suspect
+				case 1:
+					std::getline(inFile, inputLine);
+					std::getline(inFile, name);
+					std::getline(inFile, description);
+					objectPointer = new Suspect(name, description);
+					interactables.push_back(objectPointer);
+					rooms[roomNumber].addInteractable(objectPointer);
+					break;
+				default:
+					break;
+			}
+
 		}
 		
 
@@ -116,7 +143,7 @@ void Game::createRooms() {
 		inFile.close();
 	}
 
-	currentRoom = &(rooms[0]);
+	
 
 }
 
@@ -137,6 +164,11 @@ void Game::freeGame(){
 
 	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i].freeRoom();
+	}
+
+	for (unsigned int i = 0; i < interactables.size(); i++) {
+		interactables[i]->freeInteractable();
+		delete(interactables[i]);
 	}
 }
 
@@ -299,13 +331,13 @@ void Game::loadGame(){
 	gameOver = true;
 }
 
-void Game::lookAt() {
+void Game::lookAt(char* object) {
 	saveScreen();
 
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
-	wprintw(win, "Looking at .");
+	wprintw(win, "Looking at %s.", object);
 	wprintw(win, "\n%s", hitButton);
 	wrefresh(win);
 	getch();
@@ -414,5 +446,9 @@ void Game::saveGame(){
 	wprintw(win, "\n%s", hitButton);
 	wrefresh(win);
 	getch();
+}
+
+std::vector<Interactable*> Game::getInteractables(){
+	return interactables;
 }
 

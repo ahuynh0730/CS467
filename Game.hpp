@@ -13,34 +13,45 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "common.hpp"
+#include "Interactable.hpp"
 #include "Room.hpp"
+#include "Suspect.hpp"
+
 
 
 class Game {
 private:
 	std::vector<Room> rooms;
-	//std::map<std::string, Interactable*> interactables; //key is name of interactable
+	std::vector<Interactable*> interactables;
+	std::vector<Interactable*> inventory;
+	//std::map<std::string, Interactable> interactables; //key is name of interactable
+	//std::map<
 	Room* currentRoom;
 	bool gameOver = false;
 public:
-	void displayGameInfo();
-	void createInteractables();
-	void freeInteractables();
-	void createRooms();
-	Room* getCurrentRoom();
+	Room * getCurrentRoom();
 	bool getGameOverStatus();
+
 	void setGameOverStatus(bool status);
-	void freeGame();
-	void saveScreen();
-	void previousScreen();
+	
+	void createRooms();
+	void createInteractables();
+	void displayGameInfo();
 	int displayMainScreen();
+	void freeGame();
+	void freeInteractables();
+	void previousScreen();
+	void saveScreen();
+
+	
 	void loadGame();
-	void lookAt();
+	void lookAt(char*);
 	void travelTo(char*);
 	void take();
 	void displayHelpList();
 	void displayInventory();
 	void saveGame();
+	std::vector<Interactable*> getInteractables();
 
 };
 

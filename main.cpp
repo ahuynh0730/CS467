@@ -12,19 +12,21 @@ const char* hitButton = "Please enter any button to continue.";
 
 
 int main() {
-	//char* direction = (char*)"north";
-	//Game game1;
-	//game1.createRooms();
-	//for (unsigned int i = 0; i < game1.getCurrentRoom()->getTravelCommandsVector().size(); i++) {
-		//std::cout << game1.getCurrentRoom()->getTravelCommandsVector()[i] << std::endl;
+	Game game1;
+	game1.createRooms();
+
+	for (unsigned int i = 0; i < game1.getInteractables().size(); i++) {
+		std::cout << game1.getInteractables()[i]->getDescription() << std::endl;
+	}
+	//for (unsigned int i = 0; i < game1.getCurrentRoom()->getItemsList().size(); i++){
+		//std::cout << game1.getCurrentRoom()->getItemsList()[i]->getName() << std::endl;
 	//}
-	//game1.travelTo((char*)"north\0");
-	//game1.travelTo(direction);
+
 
 	
 	//below is formatting code to be uncommented later
 	//include initializing screen, making sure screen is big enough, creating a new screen, and displaying the main menu
-	const char* makeTaller = "Please make your console screen taller and try again.";
+	/*const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
 	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
 	const char* menuInstructions = "Please use the arrow keys to move up/down. Hit enter to select option.";
@@ -134,14 +136,15 @@ int main() {
 			wclear(win);
 			wrefresh(win);
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
-			wmove(win, 1, 0);
+			wmove(win, 5, 0);
 			wprintw(win, hitButton);
 			wrefresh(win);
 			getch();
 			game1.previousScreen();
 		}
 		else if (strncmp("look at ", playerInput, 8) == 0) {
-			game1.lookAt();
+			char* object = &(playerInput[8]);
+			game1.lookAt(object);
 		}
 		else if (strncmp("go ", playerInput, 2) == 0) {
 			char* destination = &(playerInput[3]);
@@ -187,7 +190,7 @@ int main() {
 
 
 	//deallocates memory and ends ncurses
-	endwin();
+	endwin();*/
 	game1.freeGame();
 	
 
