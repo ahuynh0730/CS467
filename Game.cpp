@@ -115,6 +115,7 @@ void Game::createRooms() {
 					std::getline(inFile, inputLine);
 					std::getline(inFile, name);
 					std::getline(inFile, description);
+					replaceEscapeCharacters(description);
 					objectPointer = new Suspect(name, description);
 					interactables.push_back(objectPointer);
 					rooms[roomNumber].addInteractable(objectPointer);
