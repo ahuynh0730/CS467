@@ -85,11 +85,13 @@ void Game::createRooms() {
 		//extra getline is needed to prevent reading the trailing '\n' at end of line for left room
 		std::getline(inFile, inputLine);
 		std::getline(inFile, inputLine);
+		replaceEscapeCharacters(inputLine);
 		rooms[roomNumber].setLongDescription(inputLine);
 
 
 		//reads in short description
 		std::getline(inFile, inputLine);
+		replaceEscapeCharacters(inputLine);
 		rooms[roomNumber].setShortDescription(inputLine);
 
 		//reads in commands user can enter for traveling
@@ -464,5 +466,20 @@ void Game::saveGame(){
 
 std::vector<Interactable*> Game::getInteractables(){
 	return interactables;
+}
+
+void Game::replaceEscapeCharacters(std::string& stringIn){
+	for (unsigned int i = 0; i < stringIn.size(); i++) {
+		if (stringIn[i] == '\\') {
+			if (stringIn[i + 1] == 'n') {
+				stringIn[i] = '\n';
+				stringIn.erase(i + 1, 1);
+			}
+			if (stringIn[i + 1] == 't') {
+				stringIn[i] = '\t';
+				stringIn.erase(i + 1, 1);
+			}
+		}
+	}
 }
 

@@ -28,6 +28,8 @@ private:
 	//std::map<
 	Room* currentRoom;
 	bool gameOver = false;
+
+	void replaceEscapeCharacters(std::string&);
 public:
 	Room * getCurrentRoom();
 	bool getGameOverStatus();
@@ -43,6 +45,7 @@ public:
 	void previousScreen();
 	void saveScreen();
 
+
 	
 	void loadGame();
 	void lookAt(char*);
@@ -53,6 +56,7 @@ public:
 	void saveGame();
 	std::vector<Interactable*> getInteractables();
 
+	
 };
 
 #endif

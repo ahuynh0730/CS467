@@ -14,6 +14,10 @@ const char* hitButton = "Please enter any button to continue.";
 int main() {
 	/*Game game1;
 	game1.createRooms();
+	for (unsigned int i = 0; i < game1.getCurrentRoom()->getItemsList().size(); i++) {
+		std::cout << game1.getCurrentRoom()->getItemsList()[i]->getName() << std::endl;
+	}
+	//std::cout << game1.getCurrentRoom()->getDescription() << std::endl;
 
 	for (unsigned int i = 0; i < game1.getInteractables().size(); i++) {
 		std::cout << game1.getInteractables()[i]->getDescription() << std::endl;
@@ -136,9 +140,10 @@ int main() {
 			wclear(win);
 			wrefresh(win);
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
-			wmove(win, 5, 0);
-			wprintw(win, hitButton);
 			wrefresh(win);
+			move(0, 0);
+			printw(hitButton);
+			refresh();
 			getch();
 			game1.previousScreen();
 		}
