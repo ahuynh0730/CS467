@@ -110,6 +110,10 @@ void Game::createRooms() {
 		for (int j = 0; j < numberInteractables; j++) {
 			inFile >> interactableType;
 			switch (interactableType) {
+				//base interactable
+				case 0:
+					break;
+
 				//suspect
 				case 1:
 					std::getline(inFile, inputLine);
@@ -120,6 +124,15 @@ void Game::createRooms() {
 					interactables.push_back(objectPointer);
 					rooms[roomNumber].addInteractable(objectPointer);
 					break;
+
+				//quiz
+				case 2:
+					break;
+
+				//chest
+				case 3:
+					break;
+
 				default:
 					break;
 			}

@@ -3,7 +3,7 @@
 -1
 -1
 3
-This is Room 4's long description.
+To the north is door to room 7. To the west is the door to room 3.
 This is Room 4's short description.
 north
 Room 7
@@ -13,4 +13,14 @@ null
 null
 west
 Room 3
-0
+2
+2
+physics quiz
+physics quiz description
+
+3
+physics chest
+physics chest description
+
+
+

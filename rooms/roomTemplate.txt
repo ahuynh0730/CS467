@@ -15,4 +15,8 @@ Either west or null
 Description describing room to west or null
 Number of interactables
 Type of first interactable
+	0 = Interactable (base)
 	1 = Suspect
+	2 = Quiz
+	3 = Chest
+Parameters of interactable constructor
