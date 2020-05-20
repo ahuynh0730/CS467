@@ -133,6 +133,18 @@ void Game::createRooms() {
 				case 3:
 					break;
 
+				//block
+				case 4:
+					break;
+
+				//unblock
+				case 5:
+					break;
+
+				//creator
+				case 6:
+					break;
+
 				default:
 					break;
 			}

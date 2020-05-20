@@ -19,4 +19,7 @@ Type of first interactable
 	1 = Suspect
 	2 = Quiz
 	3 = Chest
+	4 = block
+	5 = unblock
+	6 = creator
 Parameters of interactable constructor

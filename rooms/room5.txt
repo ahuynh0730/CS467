@@ -13,4 +13,10 @@ south
 Room 2
 null
 null
+2
 0
+notepad
+Written on the notepad is "24-11"
+4
+darkness
+The room is nothing but darkenss, you can only go back the way you came.

@@ -17,10 +17,6 @@ Room 3
 2
 physics quiz
 physics quiz description
-
 3
 physics chest
 physics chest description
-
-
-
