@@ -125,7 +125,9 @@ int main() {
 		move(0, 0);
 		clrtoeol();
 		wclear(win);
-		wmove(win, 0, 0);
+		wmove(win, 0, newWidth / 2 - 3);
+		wprintw(win, "Room %d", game1.getCurrentRoom()->getRoomNumber());
+		wmove(win, 1, 0);
 		wprintw(win, game1.getCurrentRoom()->getDescription());
 		wrefresh(win);
 		move(0, 0);
