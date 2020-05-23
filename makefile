@@ -7,11 +7,11 @@ CXXFLAGS += -g
 #CXXFLAGS += -O3
 LDFLAGS = -lboost_date_time
 
-OBJS = main.o Game.o Room.o Interactable.o Suspect.o
+OBJS = main.o Game.o Room.o Interactable.o Suspect.o Quiz.o Chest.o
 
-SRCS = main.cpp Game.cpp Room.cpp Interactable.cpp Suspect.cpp
+SRCS = main.cpp Game.cpp Room.cpp Interactable.cpp Suspect.cpp Quiz.cpp Chest.cpp
  
-HEADERS = common.hpp Game.hpp Room.hpp Interactable.hpp Suspect.hpp
+HEADERS = common.hpp Game.hpp Room.hpp Interactable.hpp Suspect.hpp Quiz.hpp Chest.hpp
 
 main: ${OBJS} ${HEADERS}
 	${CXX} ${LDFLAGS} ${OBJS} -o main -lncurses
