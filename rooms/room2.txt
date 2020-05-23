@@ -3,7 +3,7 @@
 3
 1
 -1
-To the north is the entrance to Room 5.\nTo the east is the entrance to Room 3.\n
+To the north is the entrance to Room 5.\nTo the east is the entrance to Room 3.\nTo the south is the entrance to Room 1.
 This is Room 2's short description.
 north
 Room 5
