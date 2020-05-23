@@ -1,6 +1,11 @@
 #include "Chest.hpp"
 
-Chest::Chest(): Interactable{}, successString{"default"}, failString{"default"}, items{std::vector<Interactable*>{}}, isCorrect{false} {}
+
+Chest::Chest(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
+	isLocked = true;
+}
+
+/*Chest::Chest(): Interactable{}, successString{"default"}, failString{"default"}, items{std::vector<Interactable*>{}}, isCorrect{false} {}
 
 Chest::Chest(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c):
 	Interactable{std::string name_, std::string desc, Room* r, Game* g, h}, successString{"default"}, failString{"default"}, items{std::vector<Interactable*>{}}, isCorrect{c}  {}
@@ -135,4 +140,4 @@ std::string takeItem(){
 
 std::string leaveItem(){
 
-}
+}*/

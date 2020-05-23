@@ -1,6 +1,14 @@
 #include "Quiz.hpp"
 
-Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, isCorrect{false} {}
+Quiz::Quiz() {
+
+}
+
+Quiz::Quiz(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
+
+}
+
+/*Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, isCorrect{false} {}
 
 Quiz::Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c):
 	Interactable{name_, desc, r, g, h}, successString{"default"}, failString{"default"}, isCorrect{c}  {}
@@ -68,4 +76,4 @@ std::string answer(){
 		isCorrect = false;
 		return failString;
 	}
-}
+}*/

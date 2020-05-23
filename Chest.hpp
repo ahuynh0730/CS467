@@ -5,14 +5,17 @@
 
 class Chest: public Interactable{
 private:
+	bool isLocked;
+	/*
 	std::string successString;
 	std::string failString;
 	std::vector<int> combination;
 	std::set<Interactable*> neededItems;
 	bool isOpen;
-	std::set<Interactable*> itemsInside;
+	std::set<Interactable*> itemsInside;*/
 public:
-	Chest();
+	Chest(std::string, std::string);
+	/*
 	Chest(std::string name_, std::string desc, Room* r, Game* g, bool h);
 	void setSuccessString(std::string s);
 	void setFailString(std::string s);
@@ -32,7 +35,7 @@ public:
 	std::string callFunction(int n);
 	std::string tryOpen();
 	std::string takeItem();
-	std::string leaveItem();
+	std::string leaveItem();*/
 };
 
 #endif
