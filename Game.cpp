@@ -109,6 +109,10 @@ void Game::createRooms() {
 		Interactable* objectPointer = NULL;
 		for (int j = 0; j < numberInteractables; j++) {
 			inFile >> interactableType;
+			std::getline(inFile, inputLine);
+			std::getline(inFile, name);
+			std::getline(inFile, description);
+			replaceEscapeCharacters(description);
 			switch (interactableType) {
 				//base interactable
 				case 0:
@@ -116,21 +120,17 @@ void Game::createRooms() {
 
 				//suspect
 				case 1:
-					std::getline(inFile, inputLine);
-					std::getline(inFile, name);
-					std::getline(inFile, description);
-					replaceEscapeCharacters(description);
 					objectPointer = new Suspect(name, description);
-					interactables.push_back(objectPointer);
-					rooms[roomNumber].addInteractable(objectPointer);
 					break;
 
 				//quiz
 				case 2:
+					objectPointer = new Quiz(name, description);
 					break;
 
 				//chest
 				case 3:
+					objectPointer = new Chest(name, description);
 					break;
 
 				//block
@@ -148,6 +148,8 @@ void Game::createRooms() {
 				default:
 					break;
 			}
+			interactables.push_back(objectPointer);
+			rooms[roomNumber].addInteractable(objectPointer);
 
 		}
 		
@@ -494,6 +496,8 @@ std::vector<Interactable*> Game::getInteractables(){
 	return interactables;
 }
 
+
+
 void Game::replaceEscapeCharacters(std::string& stringIn){
 	for (unsigned int i = 0; i < stringIn.size(); i++) {
 		if (stringIn[i] == '\\') {
@@ -509,3 +513,11 @@ void Game::replaceEscapeCharacters(std::string& stringIn){
 	}
 }
 
+std::vector<Room> Game::getRoomsVector(){
+	return rooms;
+}
+
+void Game::setCurrentRoom(Room* roomIn)
+{
+	currentRoom = roomIn;
+}

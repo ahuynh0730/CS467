@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include "common.hpp"
 #include "Interactable.hpp"
+#include "Chest.hpp"
+#include "Quiz.hpp"
 #include "Room.hpp"
 #include "Suspect.hpp"
 
@@ -55,6 +57,9 @@ public:
 	void displayInventory();
 	void saveGame();
 	std::vector<Interactable*> getInteractables();
+
+	std::vector<Room> getRoomsVector();
+	void setCurrentRoom(Room*);
 
 	
 };
