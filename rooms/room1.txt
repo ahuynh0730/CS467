@@ -3,7 +3,7 @@
 -1
 -1
 -1
-To the north, is the entrance to Room 2.\nThere are six suspects in this room:\n\tAdam\n\tSofia\n\tLucas\n\tDaniel\n\tChris\n\tJack\n\tTiana.
+To the north, is the entrance to Room 2.\nThere are six suspects in this room:\n
 This is Room 1's short description.
 north
 Room 2

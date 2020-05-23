@@ -14,6 +14,7 @@ const char* hitButton = "Please enter any button to continue.";
 int main() {
 	/*Game game1;
 	game1.createRooms();
+	std::cout << game1.getCurrentRoom()->getDescription() << std::endl;
 	for (unsigned int i = 0; i < game1.getCurrentRoom()->getItemsList().size(); i++) {
 		std::cout << game1.getCurrentRoom()->getItemsList()[i]->getName() << std::endl;
 	}
@@ -30,6 +31,7 @@ int main() {
 	
 	//below is formatting code to be uncommented later
 	//include initializing screen, making sure screen is big enough, creating a new screen, and displaying the main menu
+	
 	const char* makeTaller = "Please make your console screen taller and try again.";
 	const char* makeWider = "Please make your console screen wider and try again.";
 	const char* makeWiderAndTaller = "Please make your console screen taller and wider. Try again afterwards.";
@@ -141,6 +143,9 @@ int main() {
 			game1.saveScreen();
 			wclear(win);
 			wrefresh(win);
+			wmove(win, 0, newWidth / 2 - 3);
+			wprintw(win, "Room %d", game1.getCurrentRoom()->getRoomNumber());
+			wmove(win, 1, 0);
 			wprintw(win, game1.getCurrentRoom()->getLongDescription());
 			wrefresh(win);
 			move(0, 0);

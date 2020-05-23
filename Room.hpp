@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <unistd.h>
 #include <vector>
 #include <set>
 #include "Interactable.hpp"
@@ -18,6 +19,7 @@ private:
 	Room* east;
 	Room* south;
 	Room* west;
+	char* baseDescription;
 	char* longDescription;
 	char* shortDescription;
 	std::vector<std::string> travelCommands;
@@ -27,15 +29,17 @@ private:
 	int numberItems;
 	//std::set<Interactable*> items;
 
+	void setLongDescription();
+
 public:
 	Room();
 	void connectUp(Room*);
 	void connectRight(Room*);
 	void connectDown(Room*);
 	void connectLeft(Room*);
-	void setRoomNumber(int);
 	int getRoomNumber();
-	void setLongDescription(std::string);
+	void setRoomNumber(int);
+	void setBaseDescription(std::string);
 	char* getLongDescription();
 	void setShortDescription(std::string);
 	char* getDescription();

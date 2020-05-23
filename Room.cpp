@@ -7,7 +7,8 @@ Room::Room() {
 	east = NULL;
 	south = NULL;
 	west = NULL;
-	longDescription = new char[1000];
+	baseDescription = new char[1000];
+	longDescription = new char[2000];
 	shortDescription = new char[1000];
 	visitedBefore = false;
 }
@@ -29,20 +30,29 @@ void Room::connectLeft(Room* roomToLeft){
 	west = roomToLeft;
 }
 
+int Room::getRoomNumber() {
+	return roomNumber;
+}
+
 void Room::setRoomNumber(int number){
 	roomNumber = number;
 }
 
-
-int Room::getRoomNumber(){
-	return roomNumber;
+void Room::setBaseDescription(std::string input) {
+	strcpy(baseDescription, input.c_str());
 }
 
-void Room::setLongDescription(std::string input){
-	strcpy(longDescription, input.c_str());
+void Room::setLongDescription(){
+	memset(longDescription, 0, 2000);
+	strcpy(longDescription, baseDescription);
+	for (unsigned int i = 0; i < items.size(); i++) {
+		strcat(longDescription, "\n\t");
+		strcat(longDescription, items[i]->getName());
+	}
 }
 
 char* Room::getLongDescription(){
+	setLongDescription();
 	return longDescription;
 }
 
@@ -54,6 +64,7 @@ char * Room::getDescription()
 {
 	if (visitedBefore == false) {
 		visitedBefore = true;
+		setLongDescription();
 		return longDescription;
 	}
 	else {
@@ -134,6 +145,7 @@ int Room::getNumberItems() {
 }
 
 void Room::freeRoom(){
+	delete baseDescription;
 	delete longDescription;
 	delete shortDescription;
 }

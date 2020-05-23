@@ -86,7 +86,7 @@ void Game::createRooms() {
 		std::getline(inFile, inputLine);
 		std::getline(inFile, inputLine);
 		replaceEscapeCharacters(inputLine);
-		rooms[roomNumber].setLongDescription(inputLine);
+		rooms[roomNumber].setBaseDescription(inputLine);
 
 
 		//reads in short description
