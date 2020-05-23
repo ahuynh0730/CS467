@@ -13,7 +13,7 @@ south
 Room 3
 west
 Room 5
-3
+0
 5
 fire extinguisher
 It's a fire extinguisher.
