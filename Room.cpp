@@ -137,3 +137,46 @@ void Room::freeRoom(){
 	delete longDescription;
 	delete shortDescription;
 }
+
+void Room::printLongDescription(){
+	int row = 0;
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wmove(win, row, newWidth / 2 - 3);
+	wprintw(win, "Room %d", roomNumber);
+	row++;
+	wmove(win, row, 0);
+	wprintw(win, longDescription);
+	for (unsigned int i = 0; i < strlen(longDescription); i++) {
+		if (longDescription[i] == '\n') {
+			row++;
+		}
+	}
+	row++;
+	for (unsigned int i = 0; i < items.size(); i++) {
+		wmove(win, row, 0);
+		wprintw(win, "\t%s", items[i]->getName());
+		row++;
+	}
+	wrefresh(win);
+}
+
+void Room::printDescription(){
+	if (visitedBefore == false) {
+		visitedBefore = true;
+		printLongDescription();
+	}
+	else {
+		int row = 0;
+		move(0, 0);
+		clrtoeol();
+		wclear(win);
+		wmove(win, row, newWidth / 2 - 3);
+		wprintw(win, "Room %d", roomNumber);
+		row++;
+		wmove(win, row, 0);
+		wprintw(win, shortDescription);
+		wrefresh(win);
+	}
+}

@@ -1,11 +1,13 @@
 #ifndef ROOM_hpp
 #define ROOM_hpp
 
+#include <curses.h>
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <vector>
 #include <set>
+#include "common.hpp"
 #include "Interactable.hpp"
 
 //had to use forward declaration since Room and Interactable include eachother
@@ -52,6 +54,9 @@ public:
 	std::vector<Interactable*> getItemsList();
 	int getNumberItems();
 	void freeRoom();
+
+	void printLongDescription();
+	void printDescription();
 
 };
 
