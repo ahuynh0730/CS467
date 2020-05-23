@@ -3,7 +3,7 @@
 3
 1
 -1
-This is Room 2's long description.
+To the north is the entrance to Room 5.\nTo the east is the entrance to Room 3.\n
 This is Room 2's short description.
 north
 Room 5
@@ -13,4 +13,10 @@ south
 Room 1
 null
 null
-0
+2
+2
+Math quiz
+Math quiz description
+3
+Math Chest
+Math chest description
