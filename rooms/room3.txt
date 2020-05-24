@@ -13,4 +13,10 @@ null
 null
 west
 Room 2
-0
+2
+2
+Chemistry quiz
+Chemistry quiz description
+3
+Chemistry Chest
+Chemistry chest description

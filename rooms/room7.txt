@@ -13,4 +13,10 @@ south
 Room 4
 west
 Room 6
-0
+2
+2
+Scrambled word quiz
+Scrambled word quiz description
+3
+Scrambled word Chest
+Scrambled word chest description
