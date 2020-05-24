@@ -42,24 +42,11 @@ void Room::setLongDescription(std::string input){
 	strcpy(longDescription, input.c_str());
 }
 
-char* Room::getLongDescription(){
-	return longDescription;
-}
 
 void Room::setShortDescription(std::string input){
 	strcpy(shortDescription, input.c_str());
 }
 
-char * Room::getDescription()
-{
-	if (visitedBefore == false) {
-		visitedBefore = true;
-		return longDescription;
-	}
-	else {
-		return shortDescription;
-	}
-}
 
 std::vector<std::string> Room::getTravelCommandsVector()
 {

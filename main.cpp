@@ -135,9 +135,7 @@ int main() {
 		if (strcmp("look", playerInput) == 0) {
 			game1.saveScreen();
 			wclear(win);
-			wrefresh(win);
 			game1.getCurrentRoom()->printLongDescription();
-			wrefresh(win);
 			move(0, 0);
 			printw(hitButton);
 			refresh();

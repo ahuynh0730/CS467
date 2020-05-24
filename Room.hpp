@@ -38,9 +38,7 @@ public:
 	void setRoomNumber(int);
 	int getRoomNumber();
 	void setLongDescription(std::string);
-	char* getLongDescription();
 	void setShortDescription(std::string);
-	char* getDescription();
 	std::vector<std::string> getTravelCommandsVector();
 	void addTravelCommand(std::string);
 	Room* getNorthRoom();
