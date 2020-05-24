@@ -7,6 +7,20 @@ Suspect::Suspect() {
 Suspect::Suspect(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
 	isMurderer = false;
 }
+
+bool Suspect::accuse() {
+	if (isMurderer) {
+		wclear(win);
+		wmove(win, 0, 0);
+		wprintw(win, "Congratulations! You accused the correct person!");
+	}
+	else {
+		wclear(win);
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry! They were not the murderer!");
+	}
+	return true;
+}
 /*
 Suspect::Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g):
 	Interactable{name_, desc, r, g, false}, isMurderer{m}{}

@@ -11,6 +11,8 @@ public:
 	Suspect();
 	Suspect(std::string, std::string);
 
+	virtual bool accuse();
+
 	/*Suspect();
 	Suspect(bool m, std::string name_, std::string desc, Room* r, Game* g);
 	std::string getDesc();

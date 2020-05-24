@@ -1,9 +1,11 @@
 #ifndef INTERACTABLE_hpp
 #define INTERACTABLE_hpp
 
+#include <curses.h>
 #include <string>
 #include <string.h>
 #include <vector>
+#include "common.hpp"
 //#include "Room.hpp"
 //#include "Game.hpp"
 
@@ -25,6 +27,7 @@ public:
 	char* getName();
 	void freeInteractable();
 	char* getDescription();
+	virtual bool accuse();
 	/*Interactable(std::string name_, std::string desc, Room* r, bool h);
 	void setName(std::string name_);
 	void setShortDesc(std::string desc);

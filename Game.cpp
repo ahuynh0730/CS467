@@ -452,6 +452,7 @@ void Game::displayHelpList() {
 	wprintw(win, "\n6. inventory : This will list the contents of your inventory.");
 	wprintw(win, "\n7. savegame : This will allow you to save your game.");
 	wprintw(win, "\n8. quitgame : This allows the player to quit at any time.");
+	wprintw(win, "\n9. accuse : This allows you to accuse a suspect. Game is over after \n\taccusation.");
 	wrefresh(win);
 
 	move(0, 0);
@@ -490,6 +491,33 @@ void Game::saveGame(){
 	wprintw(win, "\n%s", hitButton);
 	wrefresh(win);
 	getch();
+}
+
+void Game::gameAccuse(char* object) {
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1) {
+		gameOver = currentRoom->getItemsList()[position]->accuse();
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+	}
+	wmove(win, 1, 0);
+	if (gameOver) {
+		wprintw(win, "The game is now over.\n");
+	}
+	wprintw(win, hitButton);
+	wrefresh(win);
+	getch();
+
+	previousScreen();
 }
 
 std::vector<Interactable*> Game::getInteractables(){

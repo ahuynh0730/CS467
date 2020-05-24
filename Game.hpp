@@ -56,8 +56,11 @@ public:
 	void displayHelpList();
 	void displayInventory();
 	void saveGame();
-	std::vector<Interactable*> getInteractables();
 
+	void gameAccuse(char*);
+
+
+	std::vector<Interactable*> getInteractables();
 	std::vector<Room> getRoomsVector();
 	void setCurrentRoom(Room*);
 

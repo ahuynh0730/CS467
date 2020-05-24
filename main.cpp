@@ -169,6 +169,10 @@ int main() {
 		else if (strcmp("quitgame", playerInput) == 0) {
 			game1.setGameOverStatus(true);
 		}
+		else if (strncmp("accuse ", playerInput, 7) == 0) {
+			char* object = &(playerInput[7]);
+			game1.gameAccuse(object);
+		}
 		else {
 			move(0, 0);
 			printw("Invalid command. Please try again.");

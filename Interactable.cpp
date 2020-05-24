@@ -31,6 +31,14 @@ char* Interactable::getDescription() {
 	return desc;
 }
 
+bool Interactable::accuse(){
+	wmove(win, 0, 0);
+	wprintw(win, "That object cannot be accused.");
+	return false;
+}
+
+
+
 /*
 Interactable::Interactable(): name{"default"}, shortDesc{"default"}, longDesc{"default"}, room{nullptr}, holdable{false} {}
 
