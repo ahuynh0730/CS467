@@ -4,8 +4,8 @@ Suspect::Suspect() {
 	isMurderer = false;
 }
 
-Suspect::Suspect(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
-	isMurderer = false;
+Suspect::Suspect(std::string nameIn, std::string descriptionIn, bool isGuilty) : Interactable(nameIn, descriptionIn) {
+	isMurderer = isGuilty;
 }
 
 bool Suspect::accuse() {

@@ -107,6 +107,7 @@ void Game::createRooms() {
 		std::string name;
 		std::string description;
 		Interactable* objectPointer = NULL;
+		bool guilty = false;
 		for (int j = 0; j < numberInteractables; j++) {
 			inFile >> interactableType;
 			std::getline(inFile, inputLine);
@@ -120,7 +121,11 @@ void Game::createRooms() {
 
 				//suspect
 				case 1:
-					objectPointer = new Suspect(name, description);
+					guilty = false;
+					inFile >> guilty;
+					std::getline(inFile, inputLine);
+					objectPointer = new Suspect(name, description, guilty);
+					std::getline(inFile, inputLine);
 					break;
 
 				//quiz
