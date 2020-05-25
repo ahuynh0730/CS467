@@ -18,6 +18,7 @@
 #include "Quiz.hpp"
 #include "Room.hpp"
 #include "Suspect.hpp"
+#include "Block.hpp"
 
 
 

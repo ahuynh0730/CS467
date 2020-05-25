@@ -106,6 +106,7 @@ void Game::createRooms() {
 		//loop that reads in object descriptions and creates them
 		std::string name;
 		std::string description;
+		std::string blockedDescription;
 		Interactable* objectPointer = NULL;
 		for (int j = 0; j < numberInteractables; j++) {
 			inFile >> interactableType;
@@ -116,6 +117,7 @@ void Game::createRooms() {
 			switch (interactableType) {
 				//base interactable
 				case 0:
+					objectPointer = new Interactable(name, description);
 					break;
 
 				//suspect
@@ -135,6 +137,8 @@ void Game::createRooms() {
 
 				//block
 				case 4:
+					std::getline(inFile, blockedDescription);
+					objectPointer = new Block(name, description, blockedDescription);
 					break;
 
 				//unblock

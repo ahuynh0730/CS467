@@ -14,3 +14,7 @@ Room 7
 west
 Room 9
 0
+4
+Hungry Dog
+There is a hungry dog blocking path to room 11, it seems like he is looking at a picture of steak on the wall!!
+

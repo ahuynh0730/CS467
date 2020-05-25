@@ -3,8 +3,8 @@
 9
 5
 -1
-This is Room 8's long description.
-This is Room 8's short description.
+To the east, is the entrance to Room 9.\nTo the south, is the enterance to Room 5.
+This room looks like to be a library, filled with books.
 null
 null
 east
@@ -13,4 +13,15 @@ south
 Room 5
 null
 null
-0
+2
+4
+Yellow book
+There is a note in this book, but words are written extremely small.
+Written inside is "This book is written is a foreign language!"
+4
+Red book
+There is a note in this book, but words are written extremely small.
+Written inside is a recipe for making a decilious meal for a dog!!!
+
+
+
