@@ -9,7 +9,7 @@ private:
 	//will add all the suspect details here
 public:
 	Suspect();
-	Suspect(std::string, std::string);
+	Suspect(std::string, std::string, bool);
 
 	virtual bool accuse();
 

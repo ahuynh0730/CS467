@@ -17,21 +17,34 @@ null
 1
 Adam
 Adam's description
+0
+
 1
 Sofia
 Sofia's description
 1
+
+1
 Lucas
 Lucas' description
+0
+
 1
 Daniel
 Daniel's description
+0
+
 1
 Chris
 Chris' description
+0
+
 1
 Jack
 Jack's description
+0
+
 1
 Tiana
 Tiana's description
+0
