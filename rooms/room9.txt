@@ -14,3 +14,9 @@ Room 6
 west
 Room 8
 0
+5
+Magnifying Glass
+Magnifying glass can help reading small notes!
+4
+There is a note on the table, but words are written extremely small.
+Seems like a combination to a locked safe, note reads "5412".
