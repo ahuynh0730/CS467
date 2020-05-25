@@ -17,6 +17,6 @@ Room 2
 2
 Chemistry quiz
 Chemistry quiz description
-3
+2
 Chemistry Chest
 Chemistry chest description

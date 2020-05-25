@@ -173,6 +173,10 @@ int main() {
 			char* object = &(playerInput[7]);
 			game1.gameAccuse(object);
 		}
+		else if (strncmp("unlock ", playerInput, 7) == 0) { //just to test, will be removed!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			char* object = &(playerInput[7]);
+			game1.unlock(object);
+		}		
 		else {
 			move(0, 0);
 			printw("Invalid command. Please try again.");

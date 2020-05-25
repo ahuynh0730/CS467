@@ -14,6 +14,9 @@ Interactable::Interactable(std::string nameIn, std::string descriptionIn) {
 	strcpy(desc, descriptionIn.c_str());
 }
 
+Interactable::~Interactable() {}
+
+
 void Interactable::setName(std::string name_) {
 	strcpy(name, name_.c_str());
 }
@@ -31,11 +34,32 @@ char* Interactable::getDescription() {
 	return desc;
 }
 
+//------------------------------------------------
+//-------------virtual functions------------------
+//------------------------------------------------
 bool Interactable::accuse(){
 	wmove(win, 0, 0);
 	wprintw(win, "That object cannot be accused.");
 	return false;
 }
+
+bool Interactable::unlock(){
+	wmove(win, 0, 0);
+	wprintw(win, "That object cannot be unlocked.");
+	return false;
+}
+
+void Interactable::addItem(Interactable* item){
+	wmove(win, 0, 0);
+	wprintw(win, "That object cannot contain items.");
+}
+
+std::vector<Interactable*> Interactable::getItemsList(){
+	return std::vector<Interactable*>();
+}
+//------------------------------------------------
+//------------------------------------------------
+//------------------------------------------------
 
 
 

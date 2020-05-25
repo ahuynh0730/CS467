@@ -136,9 +136,22 @@ void Game::createRooms() {
 					break;
 
 				//chest
-				case 3:
+				case 3:{
 					objectPointer = new Chest(name, description);
+					int numItems;
+					inFile >> numItems;
+					std::getline(inFile, inputLine);
+					for(int i=0; i<numItems; i++){
+						std::string itemName;
+						std::getline(inFile, itemName);
+						Interactable* item = getInteractableByName(itemName);
+						if(item != nullptr && rooms[roomNumber].removeInteractable(item)){
+							objectPointer->addItem(item);
+						}
+					}
+					std::getline(inFile, inputLine);
 					break;
+				}
 
 				//block
 				case 4:
@@ -181,9 +194,6 @@ void Game::createRooms() {
 
 		inFile.close();
 	}
-
-	
-
 }
 
 Room * Game::getCurrentRoom(){
@@ -557,4 +567,28 @@ std::vector<Room> Game::getRoomsVector(){
 void Game::setCurrentRoom(Room* roomIn)
 {
 	currentRoom = roomIn;
+}
+
+
+Interactable* Game::getInteractableByName(std::string name){
+	for(std::vector<Interactable*>::iterator it = interactables.begin(); it != interactables.end(); it++){
+		if(strcmp(name.c_str(), (*it)->getName()) == 0){
+			return *it;
+		}
+	}
+	return nullptr;
+}
+
+
+
+void Game::unlock(char* object){// just to test chest, will be removed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1 && currentRoom->getItemsList()[position]->unlock()) {
+		std::vector<Interactable*> itemsToAdd = currentRoom->getItemsList()[position]->getItemsList();
+		for(std::vector<Interactable*>::iterator it = itemsToAdd.begin(); it != itemsToAdd.end(); it++){
+			currentRoom->addInteractable(*it);
+		}
+	}
 }

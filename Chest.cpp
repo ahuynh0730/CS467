@@ -5,6 +5,23 @@ Chest::Chest(std::string nameIn, std::string descriptionIn) : Interactable(nameI
 	isLocked = true;
 }
 
+bool Chest::unlock(){
+	if(!isLocked)
+		return false;
+	isLocked = false;
+	wmove(win, 0, 0);
+	wprintw(win, "%s is unlocked.", name);
+	return true;
+}
+
+void Chest::addItem(Interactable* item){
+	items.push_back(item);
+}
+
+std::vector<Interactable*> Chest::getItemsList() {
+	return items;
+}
+
 /*Chest::Chest(): Interactable{}, successString{"default"}, failString{"default"}, items{std::vector<Interactable*>{}}, isCorrect{false} {}
 
 Chest::Chest(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c):

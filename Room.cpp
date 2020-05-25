@@ -94,14 +94,16 @@ int Room::getItemsListPosition(std::string input) {
 
 void Room::addInteractable(Interactable* i){
 	items.push_back(i);
-	/*std::set<Interactable*>::iterator it = items.find(i);
-	if(it != items.end())
-		return false;
-	items.insert(i);
-	return true;*/
 }
 
 bool Room::removeInteractable(Interactable* i){
+	for(std::vector<Interactable*>::iterator it = items.begin(); it != items.end(); it++){
+		if(i == (*it)){
+			items.erase(it);
+			return true;
+		}
+	}
+	return false;
 	/*
 	std::set<Interactable*>::iterator it = items.find(i);
 	if(it == items.end())
@@ -109,7 +111,6 @@ bool Room::removeInteractable(Interactable* i){
 	items.erase(i);
 	return true;	
 	*/
-	return true;
 }
 
 std::vector<Interactable*> Room::getItemsList() {
