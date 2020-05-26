@@ -383,6 +383,7 @@ void Game::loadGame(){
 void Game::lookAt(char* object) {
 	saveScreen();
 
+	int row = 0;
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
@@ -390,17 +391,20 @@ void Game::lookAt(char* object) {
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
 	if (position != -1) {
-		wmove(win, 0, 0);
+		wmove(win, row, 0);
 		wprintw(win, currentRoom->getItemsList()[position]->getName());
-		wmove(win, 1, 0);
+		row++;
+		wmove(win, row, 0);
 		wprintw(win, currentRoom->getItemsList()[position]->getDescription());
+		row++;
 		wrefresh(win);
 	}
 	else {
-		wmove(win, 0, 0);
+		wmove(win, row, 0);
 		wprintw(win, "That is an invalid object.");
+		row++;
 	}
-	wmove(win, 2, 0);
+	wmove(win, row, 0);
 	wprintw(win, hitButton);
 	wrefresh(win);
 	getch();
