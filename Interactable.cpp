@@ -54,6 +54,11 @@ void Interactable::addItem(Interactable* item){
 	wprintw(win, "That object cannot contain items.");
 }
 
+void Interactable::solve(){
+	wmove(win, 0, 0);
+	wprintw(win, "This is not a solvable object.");
+}
+
 std::vector<Interactable*> Interactable::getItemsList(){
 	return std::vector<Interactable*>();
 }
