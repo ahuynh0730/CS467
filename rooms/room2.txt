@@ -17,7 +17,7 @@ null
 2
 Math quiz
 What is 2 + 2?\n\tA. 4\n\tB. 5\n\tC. 3\n\tD. None of the above
-A correct answer
+A
 
 3
 Math Chest
