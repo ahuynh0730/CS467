@@ -8,6 +8,11 @@ Quiz::Quiz(std::string nameIn, std::string descriptionIn) : Interactable(nameIn,
 
 }
 
+void Quiz::solve(){
+	wmove(win, 0, 0);
+	wprintw(win, "What is the answer to the question?");
+}
+
 /*Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, isCorrect{false} {}
 
 Quiz::Quiz(std::string name_, std::string desc, Room* r, Game* g, bool h, bool c):

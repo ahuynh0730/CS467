@@ -12,6 +12,7 @@ private:
 public:
 	Quiz();
 	Quiz(std::string, std::string);
+	virtual void solve(); 
 
 	/*
 	Quiz();
