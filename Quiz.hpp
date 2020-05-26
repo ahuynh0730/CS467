@@ -1,6 +1,8 @@
 #ifndef QUIZ_hpp
 #define QUIZ_hpp
 
+#include <curses.h>
+#include "common.hpp"
 #include "Interactable.hpp"
 
 class Quiz: public Interactable{
@@ -11,7 +13,7 @@ private:
 	bool isCorrect;
 public:
 	Quiz();
-	Quiz(std::string, std::string);
+	Quiz(std::string, std::string, std::string);
 	virtual void solve(); 
 
 	/*

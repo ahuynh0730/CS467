@@ -107,6 +107,7 @@ void Game::createRooms() {
 		std::string name;
 		std::string description;
 		std::string blockedDescription;
+		std::string answer;
 		Interactable* objectPointer = NULL;
 		bool guilty = false;
 		for (int j = 0; j < numberInteractables; j++) {
@@ -132,7 +133,9 @@ void Game::createRooms() {
 
 				//quiz
 				case 2:
-					objectPointer = new Quiz(name, description);
+					std::getline(inFile, answer);
+					objectPointer = new Quiz(name, description, answer);
+					std::getline(inFile, inputLine);
 					break;
 
 				//chest
@@ -559,12 +562,11 @@ void Game::solve(char* object){
 	else {
 		wmove(win, 0, 0);
 		wprintw(win, "Sorry, that is not a valid object");
+		wmove(win, 1, 0);
+		wprintw(win, hitButton);
+		wrefresh(win);
 	}
-	wmove(win, 1, 0);
-	wprintw(win, hitButton);
-	wrefresh(win);
 	getch();
-
 	previousScreen();
 }
 

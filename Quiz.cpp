@@ -4,13 +4,57 @@ Quiz::Quiz() {
 
 }
 
-Quiz::Quiz(std::string nameIn, std::string descriptionIn) : Interactable(nameIn, descriptionIn) {
-
+Quiz::Quiz(std::string nameIn, std::string descriptionIn, std::string answerIn) : Interactable(nameIn, descriptionIn) {
+	correctAnswer = answerIn;
 }
 
 void Quiz::solve(){
+	char playerInputCharArray[100];
 	wmove(win, 0, 0);
-	wprintw(win, "What is the answer to the question?");
+	wprintw(win, desc);
+	wrefresh(win);
+	move(0, 0);
+	getstr(playerInputCharArray);
+	
+	//changes first letter to upper case and rest to lowercase
+	toupper(playerInputCharArray[0]);
+	for (int i = 1; i < 100; i++){
+		tolower(playerInputCharArray[i]);
+	}
+	std::string playerInput = (std::string) playerInputCharArray;
+	
+	//input is incorrect if not the correct length
+	if(playerInput.length() != correctAnswer.length() - 1){
+		wclear(win);
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry that is not the correct answer.");
+		wmove(win, 1, 0);
+		wprintw(win, hitButton);
+		wrefresh(win);
+		return;
+	}
+	
+	for (unsigned int i = 0; i < correctAnswer.length(); i++){
+		//if incorrect
+		if (playerInput[i] != correctAnswer[i]){
+			wclear(win);
+			wmove(win, 0, 0);
+			wprintw(win, "Sorry that is not the correct answer.");
+			wmove(win, 1, 0);
+			wprintw(win, hitButton);
+			wrefresh(win);
+		}
+		
+		//if correct
+		if (i == correctAnswer.length() - 1){
+			wclear(win);
+			wmove(win, 0, 0);
+			wprintw(win, "Congratulations, that is the correct answer.");
+			wmove(win, 1, 0);
+			wprintw(win, hitButton);
+			wrefresh(win);
+		}
+	}
 }
 
 /*Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, isCorrect{false} {}

@@ -17,6 +17,8 @@ room 6
 2
 Scrambled word quiz
 Scrambled word quiz description
+answer
+
 2
 Scrambled word Chest
 Scrambled word chest description
