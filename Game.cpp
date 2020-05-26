@@ -472,6 +472,7 @@ void Game::displayHelpList() {
 	wprintw(win, "\n7. savegame : This will allow you to save your game.");
 	wprintw(win, "\n8. quitgame : This allows the player to quit at any time.");
 	wprintw(win, "\n9. accuse : This allows you to accuse a suspect. Game is over after \n\taccusation.");
+	wprintw(win, "\n10. solve : This allows you to solve a quiz.");
 	wrefresh(win);
 
 	move(0, 0);
