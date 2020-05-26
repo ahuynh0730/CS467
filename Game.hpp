@@ -59,6 +59,7 @@ public:
 	void saveGame();
 
 	void gameAccuse(char*);
+	void solve(char*);
 	void unlock(char*);// just to test chest, will be removed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	std::vector<Interactable*> getInteractables();

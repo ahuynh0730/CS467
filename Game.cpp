@@ -540,6 +540,30 @@ void Game::gameAccuse(char* object) {
 	previousScreen();
 }
 
+void Game::solve(char* object){
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1) {
+		currentRoom->getItemsList()[position]->solve();
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+	}
+	wmove(win, 1, 0);
+	wprintw(win, hitButton);
+	wrefresh(win);
+	getch();
+
+	previousScreen();
+}
+
 std::vector<Interactable*> Game::getInteractables(){
 	return interactables;
 }

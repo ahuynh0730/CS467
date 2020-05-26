@@ -187,6 +187,10 @@ int main() {
 			char* object = &(playerInput[7]);
 			game1.unlock(object);
 		}		
+		else if(strncmp("solve ", playerInput, 6) == 0){
+			char* object = &(playerInput[6]);
+			game1.solve(object);
+		}
 		else {
 			move(0, 0);
 			printw("Invalid command. Please try again.");
