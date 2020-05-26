@@ -75,7 +75,7 @@ Room* Room::getWestRoom() {
 
 int Room::getTravelVectorPosition(std::string input){
 	for (unsigned int i = 0; i < travelCommands.size(); i++) {
-		if (travelCommands[i].find(input) != std::string::npos) {
+		if (travelCommands[i].compare(input) == 0) {
 			return i;
 		}
 	}
@@ -85,7 +85,7 @@ int Room::getTravelVectorPosition(std::string input){
 int Room::getItemsListPosition(std::string input) {
 	for (unsigned int i = 0; i < items.size(); i++) {
 		std::string name = items[i]->getName();
-		if (name.find(input) != std::string::npos) {
+		if (name.compare(input) == 0) {
 			return i;
 		}
 	}

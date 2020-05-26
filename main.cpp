@@ -142,16 +142,6 @@ int main() {
 			getch();
 			game1.previousScreen();
 		}
-		else if(strcmp("", playerInput) == 0){
-			move(0, 0);
-			printw("Invalid command. Please try again.");
-			move(1, 0);
-			printw(hitButton);
-			refresh();
-			getch();
-			move(1, 0);
-			clrtoeol();
-		}
 		else if (strncmp("look at ", playerInput, 8) == 0) {
 			char* object = &(playerInput[8]);
 			game1.lookAt(object);
