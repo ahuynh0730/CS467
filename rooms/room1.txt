@@ -6,7 +6,7 @@
 To the north, is the entrance to Room 2.\nThere are six suspects in this room:
 This is Room 1's short description.
 north
-Room 2
+room 2
 null
 null
 null

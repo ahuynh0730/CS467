@@ -75,8 +75,13 @@ Room* Room::getWestRoom() {
 
 int Room::getTravelVectorPosition(std::string input){
 	for (unsigned int i = 0; i < travelCommands.size(); i++) {
-		if (travelCommands[i].compare(input) == 0) {
-			return i;
+		for (unsigned int j = 0; j < input.length(); j++){
+			if (input[j] != travelCommands[i][j]){
+				break;
+			}
+			if (j == input.length() - 1){
+				return i;
+			}
 		}
 	}
 	return -1;

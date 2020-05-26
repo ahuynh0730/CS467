@@ -8,9 +8,9 @@ This is Room 14's short description.
 null
 null
 east
-Room 15
+room 15
 null
 null
 west
-Room 12
+room 12
 0

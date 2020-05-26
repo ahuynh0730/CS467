@@ -12,5 +12,5 @@ null
 null
 null
 west
-Room 14
+room 14
 0

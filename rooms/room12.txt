@@ -6,11 +6,11 @@
 This is Room 12's long description.
 This is Room 12's short description.
 north
-Room 13
+room 13
 east
-Room 14
+room 14
 null
 null
 west
-Room 11
+room 11
 0

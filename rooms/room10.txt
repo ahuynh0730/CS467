@@ -6,13 +6,13 @@
 This is Room 10's long description.
 This is Room 10's short description.
 north
-Room 11
+room 11
 null
 null
 south
-Room 7
+room 7
 west
-Room 9
+room 9
 0
 4
 Hungry Dog

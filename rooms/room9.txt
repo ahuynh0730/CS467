@@ -8,11 +8,11 @@ This is Room 9's short description.
 null
 null
 east
-Room 10
+room 10
 south
-Room 6
+room 6
 west
-Room 8
+room 8
 0
 5
 Magnifying Glass

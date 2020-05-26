@@ -6,13 +6,13 @@
 This is Room 7's long description.
 This is Room 7's short description.
 north
-Room 10
+room 10
 null
 null
 south
-Room 4
+room 4
 west
-Room 6
+room 6
 2
 2
 Scrambled word quiz

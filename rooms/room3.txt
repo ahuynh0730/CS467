@@ -6,13 +6,13 @@
 This is Room 3's long description.
 This is Room 3's short description.
 north
-Room 6
+room 6
 east
-Room 4
+room 4
 null
 null
 west
-Room 2
+room 2
 2
 2
 Chemistry quiz
