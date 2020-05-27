@@ -5,7 +5,7 @@
 #include "common.hpp"
 #include "Game.hpp"
 
-WINDOW* stdscr;
+WINDOW* stdscr; 
 WINDOW* win;
 WINDOW* borderWindow;
 const char* hitButton = "Please enter any button to continue.";

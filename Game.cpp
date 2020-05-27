@@ -2,7 +2,7 @@
 
 void Game::displayGameInfo() {
 
-	//clears window 
+	//clears window  
 	wclear(win);
 	
 
