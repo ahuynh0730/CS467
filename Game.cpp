@@ -399,7 +399,12 @@ void Game::lookAt(char* object) {
 		row++;
 		wmove(win, row, 0);
 		wprintw(win, currentRoom->getItemsList()[position]->getDescription());
-		row++;
+		char* description = currentRoom->getItemsList()[position]->getDescription();
+		for (unsigned int i = 0; i < strlen(description); i++) {
+			if (description[i] == '\n') {
+				row++;
+			}
+		}
 		wrefresh(win);
 	}
 	else {
