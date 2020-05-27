@@ -24,35 +24,35 @@ void Quiz::solve(){
 	std::string playerInput = (std::string) playerInputCharArray;
 	
 	//input is incorrect if not the correct length
-	if(playerInput.length() != correctAnswer.length() - 1){
-		wclear(win);
-		wmove(win, 0, 0);
-		wprintw(win, "Sorry, your response does not match the length of the answer.");
-		wmove(win, 1, 0);
-		wprintw(win, hitButton);
-		wrefresh(win);
-		return;
-	}
-	
-	for (unsigned int i = 0; i < correctAnswer.length() - 1; i++){
-		//if incorrect
-		if (playerInput[i] != correctAnswer[i]){
-			wclear(win);
-			wmove(win, 0, 0);
-			wprintw(win, "Sorry that is not the correct answer.");
-			wmove(win, 1, 0);
-			wprintw(win, hitButton);
-			wrefresh(win);
-			return;
+	if(playerInput.length() == correctAnswer.length() - 1){
+		
+		for (unsigned int i = 0; i < correctAnswer.length() - 1; i++){
+			//if incorrect will break out of loop
+			if (playerInput[i] != correctAnswer[i]){
+				break;
+			}
+			
+			//if correct, will print congratulations and return 
+			if (i == correctAnswer.length() - 2){
+				wclear(win);
+				wmove(win, 0, 0);
+				wprintw(win, "Congratulations, that is the correct answer.");
+				wmove(win, 1, 0);
+				wprintw(win, hitButton);
+				wrefresh(win);
+				return;
+			}
 		}
 	}
-	
+
+	//wrong answer output
 	wclear(win);
 	wmove(win, 0, 0);
-	wprintw(win, "Congratulations, that is the correct answer.");
+	wprintw(win, "Sorry, that is not the correct answer.");
 	wmove(win, 1, 0);
 	wprintw(win, hitButton);
 	wrefresh(win);
+
 }
 
 /*Quiz::Quiz(): Interactable{}, successString{"default"}, failString{"default"}, isCorrect{false} {}

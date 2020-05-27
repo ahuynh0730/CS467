@@ -16,8 +16,8 @@ null
 2
 2
 Math quiz
-In this equation (4 * 4 + 2), do you multiply first or add first?
-Multiply
+What does the 'A' stand for in PEMDAS?
+Addition
 
 3
 Math Chest
