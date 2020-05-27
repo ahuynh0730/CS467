@@ -16,8 +16,8 @@ null
 2
 2
 Math quiz
-What is 2 + 2?\n\tA. 4\n\tB. 5\n\tC. 3\n\tD. None of the above
-A
+In this equation (4 * 4 + 2), do you multiply first or add first?
+Multiply
 
 3
 Math Chest
