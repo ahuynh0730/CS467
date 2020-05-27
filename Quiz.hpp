@@ -7,7 +7,7 @@
 
 class Quiz: public Interactable{
 private:
-	std::string successString;
+	std::string successString; 
 	std::string failString;
 	std::string correctAnswer;
 	bool isCorrect;
