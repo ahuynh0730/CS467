@@ -107,6 +107,7 @@ void Game::createRooms() {
 		std::string name;
 		std::string description;
 		std::string blockedDescription;
+		std::string answer;
 		Interactable* objectPointer = NULL;
 		bool guilty = false;
 		for (int j = 0; j < numberInteractables; j++) {
@@ -132,7 +133,9 @@ void Game::createRooms() {
 
 				//quiz
 				case 2:
-					objectPointer = new Quiz(name, description);
+					std::getline(inFile, answer);
+					objectPointer = new Quiz(name, description, answer);
+					std::getline(inFile, inputLine);
 					break;
 
 				//chest
@@ -383,6 +386,7 @@ void Game::loadGame(){
 void Game::lookAt(char* object) {
 	saveScreen();
 
+	int row = 0;
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
@@ -390,17 +394,20 @@ void Game::lookAt(char* object) {
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
 	if (position != -1) {
-		wmove(win, 0, 0);
+		wmove(win, row, 0);
 		wprintw(win, currentRoom->getItemsList()[position]->getName());
-		wmove(win, 1, 0);
+		row++;
+		wmove(win, row, 0);
 		wprintw(win, currentRoom->getItemsList()[position]->getDescription());
+		row++;
 		wrefresh(win);
 	}
 	else {
-		wmove(win, 0, 0);
+		wmove(win, row, 0);
 		wprintw(win, "That is an invalid object.");
+		row++;
 	}
-	wmove(win, 2, 0);
+	wmove(win, row, 0);
 	wprintw(win, hitButton);
 	wrefresh(win);
 	getch();
@@ -472,6 +479,7 @@ void Game::displayHelpList() {
 	wprintw(win, "\n7. savegame : This will allow you to save your game.");
 	wprintw(win, "\n8. quitgame : This allows the player to quit at any time.");
 	wprintw(win, "\n9. accuse : This allows you to accuse a suspect. Game is over after \n\taccusation.");
+	wprintw(win, "\n10. solve : This allows you to solve a quiz.");
 	wrefresh(win);
 
 	move(0, 0);
@@ -536,6 +544,29 @@ void Game::gameAccuse(char* object) {
 	wrefresh(win);
 	getch();
 
+	previousScreen();
+}
+
+void Game::solve(char* object){
+	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1) {
+		currentRoom->getItemsList()[position]->solve();
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+		wmove(win, 1, 0);
+		wprintw(win, hitButton);
+		wrefresh(win);
+	}
+	getch();
 	previousScreen();
 }
 

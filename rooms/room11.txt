@@ -8,9 +8,9 @@ This is Room 11's short description.
 null
 null
 east
-Room 12
+room 12
 south
-Room 10
+room 10
 null
 null
 0

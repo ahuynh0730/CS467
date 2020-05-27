@@ -6,17 +6,19 @@
 To the north is the entrance to Room 5.\nTo the east is the entrance to Room 3.\nTo the south is the entrance to Room 1.
 This is Room 2's short description.
 north
-Room 5
+room 5
 east
-Room 3
+room 3
 south
-Room 1
+room 1
 null
 null
 2
 2
 Math quiz
-Math quiz description
+In this equation (4 * 4 + 2), do you multiply first or add first?
+Multiply
+
 3
 Math Chest
 Math chest description

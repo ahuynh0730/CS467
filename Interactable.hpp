@@ -31,6 +31,7 @@ public:
 	virtual bool accuse();
 	virtual bool unlock();
 	virtual void addItem(Interactable*);
+	virtual void solve();
 	virtual std::vector<Interactable*> getItemsList();
 	/*Interactable(std::string name_, std::string desc, Room* r, bool h);
 	void setName(std::string name_);

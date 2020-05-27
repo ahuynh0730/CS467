@@ -8,9 +8,9 @@ This room looks like to be a library, filled with books.
 null
 null
 east
-Room 9
+room 9
 south
-Room 5
+room 5
 null
 null
 2

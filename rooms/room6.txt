@@ -6,13 +6,13 @@
 This is Room 6's long description.
 This is Room 6's short description.
 north
-Room 9
+room 9
 east
-Room 7
+room 7
 south
-Room 3
+room 3
 west
-Room 5
+room 5
 0
 5
 fire extinguisher
