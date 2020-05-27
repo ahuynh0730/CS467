@@ -4,7 +4,7 @@
 -1
 -1
 To the north, is the entrance to Room 2.\nThere are six suspects in this room:
-This is Room 1's short description.
+This Room has six suspects, one of them is the murderer. \nYour job is to guess the correct suspect out of the group!\n \nHint: Use "look" command to see the list of suspects.
 north
 Room 2
 null
@@ -16,35 +16,35 @@ null
 7
 1
 Adam
-Adam's description
+> Suspect's name is Adam.\n> He is 54 years old \n> Suspect is wearing white shoes and white shirt. \n> Suspect has black gloves on. \n> Suspect is also wearing glasses.
 0
 
 1
 Sofia
-Sofia's description
+> Suspect's name is Sofia.\n> She is 34 years old\n> Suspect is wearing red hat and red shoes and red shirt.
 1
 
 1
 Lucas
-Lucas' description
+> Suspect's name is Lucas.\n> He is 22 years old\n> Suspect is wearing white hat and green shoes and blue shirt.
 0
 
 1
 Daniel
-Daniel's description
+> Suspect's name is Daniel.\n> He is 28 years old\n> Suspect is wearing blue shoes and blue shirt.\n> Suspect is also wearing glasses.\n> Suspect is wearing a jacket as well.
 0
 
 1
 Chris
-Chris' description
+> Suspect's name is Chris.\n> He is 32 years old\n> Suspect is wearing blue hat and black shoes and white shirt.\n> Suspect is wearing a jacket as well.
 0
 
 1
 Jack
-Jack's description
+> Suspect's name is Jack.\n> He is 45 years old\n> Suspect is wearing black shoes and blue shirt.\n> Suspect has brown gloves on.\n> Suspect is also wearing glasses.\n> Suspect is wearing a jacket as well.
 0
 
 1
 Tiana
-Tiana's description
+> Suspect's name is Tiana.\n> She is 30 years old\n> Suspect is wearing yellow shoes and pink shirt.\n> Suspect has red gloves on.
 0
