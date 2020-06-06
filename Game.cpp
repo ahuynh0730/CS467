@@ -23,41 +23,17 @@ void Game::displayGameInfo() {
 
 	wprintw(win, "At any point in the game, you may type help to see a list of possible");
 	wprintw(win, "\n\t commands.\n");
-	wprintw(win, hitButton);
-	move(0, 0);
-	wrefresh(win);
-	getch();
-
 }
 
-void Game::createInteractables() {
-	/*
-	interactables.insert(std::pair<std::string, Interactable*>("Adam", new Interactable("Adam", "Adam's description", nullptr, this, false)));
-	interactables.insert(std::pair<std::string, Interactable*>("Sofia", new Suspect(true, "Sofia", "Sofia's description", nullptr, this)));
-	interactables.insert(std::pair<std::string, Interactable*>("Lucas", new Suspect(false, "Lucas", "Lucas's description", nullptr, this)));
-	interactables.insert(std::pair<std::string, Interactable*>("Daniel", new Suspect(false, "Daniel", "Daniel's description", nullptr, this)));
-	interactables.insert(std::pair<std::string, Interactable*>("Chris", new Suspect(false, "Chris", "Chris's description", nullptr, this)));
-	interactables.insert(std::pair<std::string, Interactable*>("Jack", new Suspect(false, "Jack", "Jack's description", nullptr, this)));
-	interactables.insert(std::pair<std::string, Interactable*>("Tiana", new Suspect(false, "Tiana", "Tiana's description", nullptr, this)));
-	*/
-}
 
-void Game::freeInteractables() {
-	/*
-	for(std::map<std::string, Interactable*>::iterator it = interactables.begin(); it != interactables.end(); it++){
-		delete it->second;
-	}
-	interactables.clear();
-	*/
-}
 
 void Game::createRooms() {
-	//createInteractables();
 
 	std::ifstream inFile;
 	std::string inputLine;
 	std::string pathName;
 	int roomNumber, up, right, down, left, numberInteractables, interactableType;
+	bool darkness;
 
 	for (int i = 0; i < 15; i++) {
 		rooms.push_back(Room());
@@ -70,7 +46,7 @@ void Game::createRooms() {
 	for (int i = 1; i < 16; i++) {
 		pathName = "rooms/room" + std::to_string(i) + ".txt";
 		inFile.open(pathName);
-		inFile >> roomNumber >> up >> right >> down >> left;
+		inFile >> roomNumber >> up >> right >> down >> left >> darkness;
 		
 		
 		//decrementing numbers to account for zero indexing
@@ -80,6 +56,9 @@ void Game::createRooms() {
 		right--;
 		down--;
 		left--;
+		
+		//sets darkness
+		rooms[roomNumber].setDarkness(darkness);
 
 		//reads in long description
 		//extra getline is needed to prevent reading the trailing '\n' at end of line for left room
@@ -116,10 +95,12 @@ void Game::createRooms() {
 			std::getline(inFile, name);
 			std::getline(inFile, description);
 			replaceEscapeCharacters(description);
+
 			switch (interactableType) {
 				//base interactable
 				case 0:
 					objectPointer = new Interactable(name, description);
+					std::getline(inFile, inputLine);
 					break;
 
 				//suspect
@@ -127,27 +108,36 @@ void Game::createRooms() {
 					guilty = false;
 					inFile >> guilty;
 					std::getline(inFile, inputLine);
-					objectPointer = new Suspect(name, description, guilty);
+					std::getline(inFile, answer);
+					objectPointer = new Suspect(name, description, guilty, answer);
 					std::getline(inFile, inputLine);
 					break;
 
 				//quiz
-				case 2:
+				case 2:{
 					std::getline(inFile, answer);
-					objectPointer = new Quiz(name, description, answer);
+					std::string itemName;
+					std::getline(inFile, itemName);
+					Interactable* item = getInteractableByName(itemName);
+					if(item != nullptr)
+						rooms[roomNumber].removeInteractable(item);
+					objectPointer = new Quiz(name, description, answer, item);
 					std::getline(inFile, inputLine);
 					break;
+				}
 
 				//chest
 				case 3:{
-					objectPointer = new Chest(name, description);
+					std::string itemName;
+					std::getline(inFile, itemName);
+					Interactable* item = getInteractableByName(itemName);
+					objectPointer = new Chest(name, description, item);
 					int numItems;
 					inFile >> numItems;
 					std::getline(inFile, inputLine);
 					for(int i=0; i<numItems; i++){
-						std::string itemName;
 						std::getline(inFile, itemName);
-						Interactable* item = getInteractableByName(itemName);
+						item = getInteractableByName(itemName);
 						if(item != nullptr && rooms[roomNumber].removeInteractable(item)){
 							objectPointer->addItem(item);
 						}
@@ -168,6 +158,12 @@ void Game::createRooms() {
 
 				//creator
 				case 6:
+					break;
+					
+				//Food	
+				case 7:
+					objectPointer = new Food(name, description);
+					std::getline(inFile, inputLine);
 					break;
 
 				default:
@@ -212,14 +208,12 @@ void Game::setGameOverStatus(bool status){
 }
 
 void Game::freeGame(){
-	freeInteractables();
 
 	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i].freeRoom();
 	}
 
 	for (unsigned int i = 0; i < interactables.size(); i++) {
-		interactables[i]->freeInteractable();
 		delete(interactables[i]);
 	}
 }
@@ -362,25 +356,6 @@ int Game::displayMainScreen(){
 		//clears window before printing again
 		wclear(win);
 	}
-
-
-
-}
-
-//dummy function
-void Game::loadGame(){
-	
-	//clears and boxes window 
-	wclear(win);
-
-	//moves cursor and displays loading game message
-	wmove(win, 0, 0);
-	wprintw(win, "Loading game\n");
-	wprintw(win, hitButton);
-	wrefresh(win);
-	getch();
-
-	gameOver = true;
 }
 
 void Game::lookAt(char* object) {
@@ -393,37 +368,55 @@ void Game::lookAt(char* object) {
 	object[0] = toupper(object[0]);
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
-	if (position != -1) {
+	int inventoryPosition = -1;
+	char* name;
+	char* description;
+	for(unsigned int i = 0; i < inventory.size(); i++){
+		name = inventory[i]->getName();
+		if (strncmp(object, name, strlen(name) - 1) == 0){
+			inventoryPosition = i;
+		}
+	}
+	if (position != -1 || inventoryPosition != -1) {
+		if (position != -1){
+			name = currentRoom->getItemsList()[position]->getName();
+			description = currentRoom->getItemsList()[position]->getDescription();
+		} else if (inventoryPosition != -1){
+			name = inventory[inventoryPosition]->getName();
+			description = inventory[inventoryPosition]->getDescription();
+		}
 		wmove(win, row, 0);
-		wprintw(win, currentRoom->getItemsList()[position]->getName());
+		wprintw(win, name);
 		row++;
 		wmove(win, row, 0);
-		wprintw(win, currentRoom->getItemsList()[position]->getDescription());
-		char* description = currentRoom->getItemsList()[position]->getDescription();
+		wprintw(win, description);
 		for (unsigned int i = 0; i < strlen(description); i++) {
 			if (description[i] == '\n') {
 				row++;
 			}
 		}
-		wrefresh(win);
+		row++;
+		
 	}
 	else {
 		wmove(win, row, 0);
 		wprintw(win, "That is an invalid object.");
 		row++;
 	}
-	wmove(win, row, 0);
-	wprintw(win, hitButton);
 	wrefresh(win);
-	getch();
-
-	previousScreen();
+	wmove(win, row, 0);
 }
 
 void Game::travelTo(char* destination){
+	saveScreen();
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	wmove(win, 0, 0);
 	
 	std::string dest(destination);
 	int travelNumber = currentRoom->getTravelVectorPosition(dest);
+	bool traveled = true;
 	
 	//will set current room based on travelNumber
 	switch (travelNumber) {
@@ -444,85 +437,151 @@ void Game::travelTo(char* destination){
 			currentRoom = currentRoom->getWestRoom();
 			break;
 		default:
-			move(0, 0);
-			printw("Invalid location.");
-			refresh();
-			usleep(1000000);
+			traveled = false;
 			break;
 	}
 	
+	if(traveled)
+		wprintw(win, "Traveled to Room %d", currentRoom->getRoomNumber());
+	else
+		wprintw(win, "Invalid location");
+
+	wmove(win, 1, 0);
 }
 
-//dummy function
-void Game::take() {
+void Game::gameTake(char* object) {
 	saveScreen();
 
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
-	wprintw(win, "Taking .");
-	wprintw(win, "\n%s", hitButton);
-	wrefresh(win);
-	getch();
-
-	previousScreen();
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1) {
+		//if item can be taken, will remove from room and add to inventory
+		if(currentRoom->getItemsList()[position]->take() == true){
+			wmove(win, 0 ,0);
+			wprintw(win, "The %s", currentRoom->getItemsList()[position]->getName());
+			int nameLength = strlen(currentRoom->getItemsList()[position]->getName());
+			wmove(win, 0, nameLength + 4);
+			wprintw(win, "was added to your inventory.");
+			inventory.push_back(currentRoom->getItemsList()[position]);
+			currentRoom->removeInteractable(currentRoom->getItemsList()[position]);
+		} else {
+			wmove(win, 0, 0);
+			wprintw(win, "You cannot take that object.");
+		}
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+	}
+	wmove(win, 1, 0);
 }
 
 void Game::displayHelpList() {
 	saveScreen();
+
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
 
 
 	//list of available commands
 	wmove(win, 0, 0);
 	wprintw(win, "These are available commands during gameplay.");
 	wprintw(win, "\n1. look : This repeats the long explanation of the room");
-	wprintw(win, "\n2. look at : This gives an explanation or the object.");
-	wprintw(win, "\n3. go : This allows you to travel to adjacent rooms.");
-	wprintw(win, "\n4. take : This allows you to put an object in your inventory.");
+	wprintw(win, "\n2. look at (object name): This gives an explanation or the object.");
+	wprintw(win, "\n3. go (compass direction or exit description): This allows you to travel\n\tto adjacent rooms.");
+	wprintw(win, "\n3. map : display the map of the rooms.");
+	wprintw(win, "\n4. take (item name): This allows you to put an object in your inventory.");
 	wprintw(win, "\n5. help : This will bring up the available commands during gameplay.");
 	wprintw(win, "\n6. inventory : This will list the contents of your inventory.");
-	wprintw(win, "\n7. savegame : This will allow you to save your game.");
+	wprintw(win, "\n7. savegame (save name): This will allow you to save your game.");
 	wprintw(win, "\n8. quitgame : This allows the player to quit at any time.");
-	wprintw(win, "\n9. accuse : This allows you to accuse a suspect. Game is over after \n\taccusation.");
-	wprintw(win, "\n10. solve : This allows you to solve a quiz.");
+	wprintw(win, "\n9. accuse (suspect name): This allows you to accuse a suspect. Game is\n\tover after accusation.");
+	wprintw(win, "\n10. question (suspect name): This allows you to question a suspect.");
+	wprintw(win, "\n11. solve (quiz name) (answer): This allows you to solve a quiz.");
+	wprintw(win, "\n12. drop (item): This allows you to drop an item in your inventory.");
+	wprintw(win, "\n13. fasttravel room (number): This allows you to quickly go to a\n\tpreviously visited room");
+	wprintw(win, "\n14. unlock (chest name): This attempts to unlock the chest.");
+	wprintw(win, "\n15. open (chest name): This attempts to open the chest.");
+	wprintw(win, "\n16. eat (item name) : This allows you to eat an item in your inventory.");
 	wrefresh(win);
+	wmove(win, 21, 0);
+}
+
+void Game::displayMap() {
+	saveScreen();
+
+
+	//list of available commands
+	wmove(win, 0, 0);
+	wprintw(win, "Here is map of the game:");
+	wprintw(win, "\n                                       --------");
+	wprintw(win, "\n                                      |   14   |");
+	wprintw(win, "\n                                       --------");
+	wprintw(win, "\n                                           |");
+	wprintw(win, "\n                           --------    --------    --------    --------");
+	wprintw(win, "\n                          |   11   |--|   12   |--|   13   |--|   15   |");
+	wprintw(win, "\n                           --------    --------    --------    --------");
+	wprintw(win, "\n                              |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n  |   8   |--|   9   |--|   10   |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n      |          |           |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n  |   5   |--|   6   |--|    7   |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n      |          |           |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n  |   2   |--|   3   |--|    4   |");
+	wprintw(win, "\n   -------    -------    -------- ");
+	wprintw(win, "\n      |");
+	wprintw(win, "\n   -------");
+	wprintw(win, "\n  |   1   |");
+	wprintw(win, "\n   -------");
+	wrefresh(win);
+	wmove(win, 1, 0);
 
 	move(0, 0);
-	printw("Press any key to return to previous screen.");
-	refresh();
-	getch();
-
-	previousScreen();
-	wrefresh(win);
-	wrefresh(borderWindow);
 	refresh();
 }
 
-//dummy function
 void Game::displayInventory() {
+	saveScreen();
+
+
+	int row = 0;
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
+	for (unsigned int i = 0; i < inventory.size(); i++){
+		wmove(win, row, 0);
+		wprintw(win, inventory[i]->getName());
+		row++;
+	}
+	wmove(win, row, 0);
+}
+
+void Game::question(char* object){
 	saveScreen();
 
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
-	wprintw(win, "Displaying inventory.");
-	wprintw(win, "\n%s", hitButton);
-	wrefresh(win);
-	getch();
-
-	previousScreen();
-}
-
-
-//dummy function
-void Game::saveGame(){
-	move(0, 0);
-	clrtoeol();
-	wclear(win);
-	wprintw(win, "Game is being saved.");
-	wprintw(win, "\n%s", hitButton);
-	wrefresh(win);
-	getch();
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1 && currentRoom->getItemsList()[position]->getType() == 1) {
+		currentRoom->getItemsList()[position]->question();
+	}
+	else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+		wmove(win, 1, 0);
+	}
 }
 
 void Game::gameAccuse(char* object) {
@@ -534,7 +593,7 @@ void Game::gameAccuse(char* object) {
 	object[0] = toupper(object[0]);
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
-	if (position != -1) {
+	if (position != -1 && currentRoom->getItemsList()[position]->getType() == 1) {
 		gameOver = currentRoom->getItemsList()[position]->accuse();
 	}
 	else {
@@ -545,11 +604,6 @@ void Game::gameAccuse(char* object) {
 	if (gameOver) {
 		wprintw(win, "The game is now over.\n");
 	}
-	wprintw(win, hitButton);
-	wrefresh(win);
-	getch();
-
-	previousScreen();
 }
 
 void Game::solve(char* object){
@@ -558,28 +612,49 @@ void Game::solve(char* object){
 	move(0, 0);
 	clrtoeol();
 	wclear(win);
+
+	//separate answer from object
+	char* answer = object + strlen(object)-1;
+	while(answer[0] != ' ')
+		answer--;
+	answer[0] = '\0';
+	answer++;
+
 	object[0] = toupper(object[0]);
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
-	if (position != -1) {
-		currentRoom->getItemsList()[position]->solve();
+	if (position != -1 && currentRoom->getItemsList()[position]->getType() == 2) {
+		//if solving quiz comes back with a reward, will remove quiz from room and add reward
+		Interactable* reward = currentRoom->getItemsList()[position]->solve(answer);
+		if (reward != nullptr){
+			currentRoom->removeInteractable(currentRoom->getItemsList()[position]);
+			currentRoom->addInteractable(reward);
+			wclear(win);
+			wmove(win, 0, 0);
+			wprintw(win, "Congratulations, that is the correct answer.");
+			wmove(win, 1, 0);
+			wprintw(win, reward->getName());
+			wmove(win, 1, strlen(reward->getName()));
+			wprintw(win, "was added to the room.");
+			wmove(win, 2, 0);
+		}
+		else{			
+			wclear(win);
+			wmove(win, 0, 0);
+			wprintw(win, "Sorry, that is not the correct answer.");
+			wmove(win, 1, 0);
+		}
 	}
 	else {
 		wmove(win, 0, 0);
 		wprintw(win, "Sorry, that is not a valid object");
 		wmove(win, 1, 0);
-		wprintw(win, hitButton);
-		wrefresh(win);
 	}
-	getch();
-	previousScreen();
 }
 
 std::vector<Interactable*> Game::getInteractables(){
 	return interactables;
 }
-
-
 
 void Game::replaceEscapeCharacters(std::string& stringIn){
 	for (unsigned int i = 0; i < stringIn.size(); i++) {
@@ -605,7 +680,6 @@ void Game::setCurrentRoom(Room* roomIn)
 	currentRoom = roomIn;
 }
 
-
 Interactable* Game::getInteractableByName(std::string name){
 	for(std::vector<Interactable*>::iterator it = interactables.begin(); it != interactables.end(); it++){
 		if(strcmp(name.c_str(), (*it)->getName()) == 0){
@@ -615,16 +689,239 @@ Interactable* Game::getInteractableByName(std::string name){
 	return nullptr;
 }
 
+void Game::type(char* object){
+	saveScreen();
 
-
-void Game::unlock(char* object){// just to test chest, will be removed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	move(0, 0);
+	clrtoeol();
+	wclear(win);
 	object[0] = toupper(object[0]);
 	std::string obj(object);
 	int position = currentRoom->getItemsListPosition(obj);
-	if (position != -1 && currentRoom->getItemsList()[position]->unlock()) {
-		std::vector<Interactable*> itemsToAdd = currentRoom->getItemsList()[position]->getItemsList();
-		for(std::vector<Interactable*>::iterator it = itemsToAdd.begin(); it != itemsToAdd.end(); it++){
-			currentRoom->addInteractable(*it);
+	wmove(win, 0, 0);
+	if (position != -1) 
+		wprintw(win, "The object is of type %d", currentRoom->getItemsList()[position]->getType());
+	else 
+		wprintw(win, "Sorry, that is not a valid object");
+	wmove(win, 1, 0);
+}
+
+void Game::unlock(char* object){
+	saveScreen();
+
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1 && currentRoom->getItemsList()[position]->getType() == 3) {
+		Interactable* key = currentRoom->getItemsList()[position]->unlock(inventory);
+
+		if(key == nullptr){
+			wprintw(win, "Sorry, you couldn't unlock the %s", currentRoom->getItemsList()[position]->getName());
+			wmove(win, 1, 0);
+		}
+		else if(key == currentRoom->getItemsList()[position]){
+			wprintw(win, "The %s", currentRoom->getItemsList()[position]->getName());
+			wmove(win, 0, 4 + strlen(currentRoom->getItemsList()[position]->getName()));
+			wprintw(win, "is already unlocked");
+			wmove(win, 1, 0);
+
+		}
+		else{
+			wprintw(win, "You unlocked the %s", currentRoom->getItemsList()[position]->getName());
+			wmove(win, 0, 18 + strlen(currentRoom->getItemsList()[position]->getName()));
+			wprintw(win, "using your %s", key->getName());
+			wmove(win, 1, 0);
 		}
 	}
+	else {
+		wprintw(win, "Sorry, that is not a valid object");
+		wmove(win, 1, 0);
+	}
+}
+
+void Game::open(char* object){	
+	saveScreen();
+
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	object[0] = toupper(object[0]);
+	std::string obj(object);
+	int position = currentRoom->getItemsListPosition(obj);
+	if (position != -1 && currentRoom->getItemsList()[position]->getType() == 3) {
+		if(currentRoom->getItemsList()[position]->getIsLocked()){
+			wprintw(win, "Sorry, the %s", currentRoom->getItemsList()[position]->getName());
+			wmove(win, 0, 11 + strlen(currentRoom->getItemsList()[position]->getName()));
+			wprintw(win, "is locked");
+			wmove(win, 1, 0);
+		}
+		else{
+			std::vector<Interactable*> itemsToAdd = currentRoom->getItemsList()[position]->getItemsList();
+			if(itemsToAdd.size() == 0){
+				wprintw(win, "The %s", currentRoom->getItemsList()[position]->getName());
+				wmove(win, 0, 4 + strlen(currentRoom->getItemsList()[position]->getName()));
+				wprintw(win, "is empty");
+				wmove(win, 1, 0);
+			}
+			else{
+				wprintw(win, "Objects added to Room %d:", currentRoom->getRoomNumber());
+				int row = 1;
+				for(std::vector<Interactable*>::iterator it = itemsToAdd.begin(); it != itemsToAdd.end(); it++){
+					currentRoom->addInteractable(*it);
+					wmove(win, row, 0);
+					wprintw(win, "\t%s", (*it)->getName());
+					row++;
+				}
+
+				currentRoom->getItemsList()[position]->empty();
+				wmove(win, row, 0);
+				wprintw(win, "The %s", currentRoom->getItemsList()[position]->getName());
+				wmove(win, row, 4 + strlen(currentRoom->getItemsList()[position]->getName()));
+				wprintw(win, "is now empty");
+
+				row++;
+				wmove(win, row, 0);
+			}
+		}
+	}
+	else {
+		wprintw(win, "Sorry, that is not a valid object");
+		wmove(win, 1, 0);
+	}
+}
+
+void Game::drop(char* object){
+	saveScreen();
+	
+	
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	
+	
+	object[0] = toupper(object[0]);
+	char* name;
+	
+	int inventoryPosition = -1;
+	for(unsigned int i = 0; i < inventory.size(); i++){
+		name = inventory[i]->getName();
+		if (strncmp(object, name, strlen(name) - 1) == 0){
+			inventoryPosition = i;
+		}
+	}
+	
+	if (inventoryPosition != -1){
+		Interactable* itemToBeDropped = inventory[inventoryPosition];
+		currentRoom->addInteractable(itemToBeDropped);
+		wmove(win, 0, 0);
+		wprintw(win, itemToBeDropped->getName());
+		wmove(win, 0, strlen(itemToBeDropped->getName()));
+		wprintw(win, "was dropped from your inventory.");
+		inventory.erase(inventory.begin() + inventoryPosition);
+	} else {
+		wmove(win, 0, 0);
+		wprintw(win, "Sorry, that is not a valid object");
+	}
+	
+	wmove(win, 1, 0);
+}
+
+void Game::fastTravel(char* roomNumber){
+	saveScreen();
+	
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	
+	int roomNum = atoi(roomNumber);
+	bool roomFound = false;
+	
+	for (unsigned int i = 0; i< roomsVisited.size(); i++){
+		if (roomsVisited[i]->getRoomNumber() == roomNum){
+			roomFound = true;
+			currentRoom = roomsVisited[i];
+			wmove(win, 0, 0);
+			wprintw(win, "Moving to Room %d", roomsVisited[i]->getRoomNumber());
+			break;
+		}
+		if (roomFound == false && i == roomsVisited.size() - 1){
+			wmove(win, 0, 0);
+			wprintw(win, "Either you have not been there, or that is not a room name");
+		}
+	}
+	
+	wmove(win, 1, 0);
+}
+
+void Game::addToRoomsVisited(Room* room){
+	for (unsigned int i = 0; i < roomsVisited.size(); i++){
+		if (roomsVisited[i] == room){
+			return;
+		}
+	}
+	roomsVisited.push_back(room);
+}
+
+void Game::gameFrisk(char* suspect){
+	saveScreen();
+	
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	
+	suspect[0] = toupper(suspect[0]);
+	std::string sus(suspect);
+	int position = currentRoom->getItemsListPosition(sus);
+	if (position != -1) {
+		if(currentRoom->getItemsList()[position]->getType() == 1)
+			currentRoom->getItemsList()[position]->frisk();
+		else
+			wprintw(win, "You cannot frisk the %s", suspect);
+	}
+	else
+		wprintw(win, "Sorry, that is not a valid object");
+	
+	wmove(win, 1, 0);
+}
+
+void Game::gameEat(char* object){
+	saveScreen();
+	
+	move(0, 0);
+	wmove(win, 0, 0);
+	clrtoeol();
+	wclear(win);
+	
+	object[0] = toupper(object[0]);
+	std::string foodName(object);
+	int inventoryPosition = -1;
+	for(unsigned int i = 0; i < inventory.size(); i++){
+		if (foodName.compare((std::string)inventory[i]->getName())){
+			inventoryPosition = i;
+		}
+	}
+	if (inventoryPosition != -1){
+		Interactable* itemToBeEaten = inventory[inventoryPosition];
+		//check that the item is food
+		if(itemToBeEaten->getType() == 7){
+			inventory.erase(inventory.begin() + inventoryPosition);
+			wprintw(win, "You just ate the %s", object);
+		}
+		else{
+			wprintw(win, "You cannot eat the %s", object);
+		}
+	}
+	else {
+		wprintw(win, "That item is not in your inventory");
+	}
+	
+	wmove(win, 1, 0);
 }

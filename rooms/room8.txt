@@ -3,8 +3,9 @@
 9
 5
 -1
-To the east, is the entrance to Room 9.\nTo the south, is the enterance to Room 5.
-This room looks like to be a library, filled with books.
+0
+Adjacent Rooms:\n> To the east is the entrance to Room 9.\n> To the south is the entrance to Room 5.\n\n- This Room is filled with very large books!\n- Some books are laying on the floor in front of you:\n\n
+Adjacent Rooms:\n> To the east is the entrance to Room 9.\n> To the south is the entrance to Room 5.\n\n- Library with tons of books!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room.
 null
 null
 east
@@ -14,14 +15,10 @@ room 5
 null
 null
 2
-4
-Yellow book
-There is a note in this book, but words are written extremely small.
-Written inside is "This book is written is a foreign language!"
-4
-Red book
-There is a note in this book, but words are written extremely small.
-Written inside is a recipe for making a decilious meal for a dog!!!
+0
+Poetry book
+"Word are like water, Come in many forms"\n   "So easy to get used to the common norms"\n\n"It's nothing but a human curse"\n   "That we cannot read them in reverse!"\n
 
-
-
+0
+Communications book
+"Aliens Communications Rule #34:\n\n- Take the time and talk to your opponent in their native language.\n- Being able to talk back in reverse could be a matter of life or death!"

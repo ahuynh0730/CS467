@@ -3,8 +3,9 @@
 14
 -1
 11
-This is Room 12's long description.
-This is Room 12's short description.
+0
+Adjacent Rooms:\n> To the north is the entrance to Room 13.\n> To the east is the entrance to Room 14.\n> To the west is the entrance to Room 11.\n\n- This Room is full of taxidermied animals!\n- There is a Tiger, Lion, Elephant and even a Giraffe:\n\n
+Adjacent Rooms:\n> To the north is the entrance to Room 13.\n> To the east is the entrance to Room 14.\n> To the west is the entrance to Room 11.\n\n- So many animals in this room...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room.
 north
 room 13
 east
@@ -13,4 +14,24 @@ null
 null
 west
 room 11
+4
 0
+Note from room 12
+"Zoologist note: Murderer did not wear anything made ouf of leather!"
+
+0
+Key from room 12
+This key was retrieved from the zoology quiz
+
+2
+Zoology quiz
+What does a tiny bird sound like?\n
+Chirrup
+Key from room 12
+
+3
+Zoology chest
+Contains a clue to find the murderer!
+Key from room 12
+1
+Note from room 12

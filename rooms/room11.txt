@@ -3,8 +3,9 @@
 12
 10
 -1
-This is Room 11's long description.
-This is Room 11's short description.
+0
+Adjacent Rooms:\n> To the east is the entrance to Room 12.\n> To the south is the entrance to Room 10.\n\n- This Room is where the murder took place. The body is gone and room is\ncleaned up but maybe there are some clues left:\n\n
+Adjacent Rooms:\n> To the east is the entrance to Room 12.\n> To the south is the entrance to Room 10.\n\n- This Room is where the murder took place!!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room.
 null
 null
 east
@@ -13,4 +14,24 @@ south
 room 10
 null
 null
+4
 0
+Note from room 11
+"Police note: We did not find finger prints anywhere in the room!\nMurderer might have been wearing gloves."\n\n
+
+0
+Key from room 11
+This key was retrieved from the Crime quiz
+
+2
+Crime quiz
+True/False: Would murderer wear something pink?\n
+False
+Key from room 11
+
+3
+Crime chest
+Contains a clue to find the murderer!
+Key from room 11
+1
+Note from room 11

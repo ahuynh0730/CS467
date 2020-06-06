@@ -10,6 +10,7 @@ Room::Room() {
 	longDescription = new char[1000];
 	shortDescription = new char[1000];
 	visitedBefore = false;
+	naturallyDark = false;
 }
 
 
@@ -91,7 +92,6 @@ int Room::getTravelVectorPosition(std::string input){
 }
 
 int Room::getItemsListPosition(std::string input) {
-	
 	for (unsigned int i = 0; i < items.size(); i++) {
 		std::string name = items[i]->getName();
 		if (input.length() != name.length() - 1){
@@ -109,6 +109,12 @@ int Room::getItemsListPosition(std::string input) {
 	return -1;
 }
 
+Interactable* Room::getItemAtPosition(unsigned int i){
+	if(i > items.size()-1)
+		return nullptr;
+	return items[i];
+}
+
 void Room::addInteractable(Interactable* i){
 	items.push_back(i);
 }
@@ -121,13 +127,6 @@ bool Room::removeInteractable(Interactable* i){
 		}
 	}
 	return false;
-	/*
-	std::set<Interactable*>::iterator it = items.find(i);
-	if(it == items.end())
-		return false;
-	items.erase(i);
-	return true;	
-	*/
 }
 
 std::vector<Interactable*> Room::getItemsList() {
@@ -143,37 +142,13 @@ void Room::freeRoom(){
 	delete shortDescription;
 }
 
-void Room::printLongDescription(){
-	int row = 0;
-	move(0, 0);
-	clrtoeol();
-	wclear(win);
-	wmove(win, row, newWidth / 2 - 3);
-	wprintw(win, "Room %d", roomNumber);
-	row++;
-	wmove(win, row, 0);
-	wprintw(win, longDescription);
-	for (unsigned int i = 0; i < strlen(longDescription); i++) {
-		if (longDescription[i] == '\n') {
-			row++;
-		}
-	}
-	row++;
-	for (unsigned int i = 0; i < items.size(); i++) {
-		wmove(win, row, 0);
-		wprintw(win, "\t%s", items[i]->getName());
-		row++;
-	}
-	wrefresh(win);
+void Room::setDarkness(bool darknessIn){
+	naturallyDark = darknessIn;
 }
 
-void Room::printDescription(){
-	if (visitedBefore == false) {
-		visitedBefore = true;
-		printLongDescription();
-	}
-	else {
-		int row = 0;
+void Room::printLongDescription(){
+	int row = 0;
+	if (naturallyDark == true && containsCandle() == false){
 		move(0, 0);
 		clrtoeol();
 		wclear(win);
@@ -181,7 +156,70 @@ void Room::printDescription(){
 		wprintw(win, "Room %d", roomNumber);
 		row++;
 		wmove(win, row, 0);
-		wprintw(win, shortDescription);
-		wrefresh(win);
+		wprintw(win, "This room is too dark to see anything.");
+		row++;
+	} else {
+		move(0, 0);
+		clrtoeol();
+		wclear(win);
+		wmove(win, row, newWidth / 2 - 3);
+		wprintw(win, "Room %d", roomNumber);
+		row++;
+		wmove(win, row, 0);
+		wprintw(win, longDescription);
+		for (unsigned int i = 0; i < strlen(longDescription); i++) {
+			if (longDescription[i] == '\n') {
+				row++;
+			}
+		}
+		for (unsigned int i = 0; i < items.size(); i++) {
+			wmove(win, row, 0);
+			wprintw(win, "\t%s", items[i]->getName());
+			row++;
+		}
 	}
+	wmove(win, row, 0);
+	wrefresh(win);
+}
+
+void Room::printDescription(){
+	int row = 0;
+	if (naturallyDark == true && containsCandle() == false){
+		move(0, 0);
+		clrtoeol();
+		wclear(win);
+		wmove(win, row, newWidth / 2 - 3);
+		wprintw(win, "Room %d", roomNumber);
+		row++;
+		wmove(win, row, 0);
+		wprintw(win, "This room is too dark to see anything.");
+	} else {
+		if (visitedBefore == false) {
+			visitedBefore = true;
+			printLongDescription();
+		}
+		else {
+			int row = 0;
+			move(0, 0);
+			clrtoeol();
+			wclear(win);
+			wmove(win, row, newWidth / 2 - 3);
+			wprintw(win, "Room %d", roomNumber);
+			row++;
+			wmove(win, row, 0);
+			wprintw(win, shortDescription);
+			
+		}
+	}
+	wrefresh(win);
+}
+
+bool Room::containsCandle(){
+	int candlePosition = -1;
+	std::string candle = "Candle";
+	candlePosition = getItemsListPosition(candle);
+	if (candlePosition != -1){
+		return true;
+	}
+	return false;
 }

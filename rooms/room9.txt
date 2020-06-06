@@ -3,8 +3,9 @@
 10
 6
 8
-This is Room 9's long description.
-This is Room 9's short description.
+1
+Adjacent Rooms:\n>To the east is the entrance to Room 10.\n> To the south is the entrance to Room 6.\n> To the west is the entrance to Room 5.\n\n- This Room is still very dark however with the light of your candle\n you can barely see some objects in the shadows:\n\n
+Adjacent Rooms:\n>To the east is the entrance to Room 10.\n> To the south is the entrance to Room 6.\n> To the west is the entrance to Room 5.\n\n- With the light of your candle, you can see some objects!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room..
 null
 null
 east
@@ -13,10 +14,11 @@ south
 room 6
 west
 room 8
+2
+7
+Orange
+Very ripe and looks delicious, "Orange" you glad you found it??
+
 0
-5
-Magnifying Glass
-Magnifying glass can help reading small notes!
-4
-There is a note on the table, but words are written extremely small.
-Seems like a combination to a locked safe, note reads "5412".
+Parchment
+"Murderer would never wear anything in Orange!"\n

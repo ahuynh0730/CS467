@@ -3,8 +3,9 @@
 -1
 -1
 14
-This is Room 15's long description.
-This is Room 15's short description.
+1
+Adjacent Rooms:\n> To the west is the entrance to Room 14.\n\n- This is the security room- Monitors covering footage from ccv camera are all smashed!\n\n
+Adjacent Rooms:\n> To the west is the entrance to Room 14.\n\n- This is the security room...must find some important clues here!
 null
 null
 null
@@ -13,4 +14,28 @@ null
 null
 west
 room 14
+5
+7
+Cake
+The Cake is a Lie, but Murdering is a crime!
+
 0
+Note from room 15
+"Police note: Murderer loved the color red!"\n\n
+
+0
+Key from room 15
+This key was retrieved from the Final quiz
+
+2
+Final quiz
+What weapon did the murderer use?\n
+Knife
+Key from room 15
+
+3
+Final chest
+Contains a clue to find the murderer!
+Key from room 15
+1
+Note from room 15

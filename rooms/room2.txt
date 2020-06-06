@@ -3,8 +3,9 @@
 3
 1
 -1
-To the north is the entrance to Room 5.\nTo the east is the entrance to Room 3.\nTo the south is the entrance to Room 1.
-This is Room 2's short description.
+0
+Adjacent Rooms:\n> To the north is the entrance to Room 5.\n> To the east is the entrance to Room 3.\n> To the south is the entrance to Room 1.\n\n- This Room is filled with mathematical equations on the walls.\n- This Room must have belonged to a Mathematician leaving these items:\n\n
+Adjacent Rooms:\n> To the north is the entrance to Room 5.\n> To the east is the entrance to Room 3.\n> To the south is the entrance to Room 1.\n\n- It looks like an abandoned Math classroom!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room..
 north
 room 5
 east
@@ -13,14 +14,24 @@ south
 room 1
 null
 null
-2
-2
-Math quiz
-What does the 'A' stand for in PEMDAS?
-Addition
+4
+0
+Note from room 2
+"Mathematician note: Murderer was born prior to 1998!"
+
+0
+Key from room 2
+This key was retrieved from the math quiz
 
 3
-Math Chest
-Math chest description
+Math chest
+Contains a clue to find the murderer!
+Key from room 2
 1
+Note from room 2
+
+2
 Math quiz
+What does the 'A' stand for in PEMDAS?\n
+Addition
+Key from room 2

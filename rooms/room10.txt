@@ -3,8 +3,9 @@
 -1
 7
 9
-This is Room 10's long description.
-This is Room 10's short description.
+0
+Adjacent Rooms:\n> To the north is the entrance to Room 11.\n> To the south is the entrance to Room 7.\n> To the west is the entrance to Room 9.\n\n- There are many small toys in this room, maybe belonging to a baby!\n- They all seem to be animal toys:\n\n
+Adjacent Rooms:\n> To the north is the entrance to Room 11.\n> To the south is the entrance to Room 7.\n> To the west is the entrance to Room 9.\n\n- There are lots of toys!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint: Use "look" command to see the list of objects in the room.
 north
 room 11
 null
@@ -13,8 +14,15 @@ south
 room 7
 west
 room 9
+3
 0
-4
-Hungry Dog
-There is a hungry dog blocking path to room 11, it seems like he is looking at a picture of steak on the wall!!
+Small dog
+"Woof"\n
 
+0
+Tiny bird
+"Chirrup"\n
+
+0
+Small pig
+"Oink"\n

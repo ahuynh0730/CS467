@@ -3,6 +3,7 @@ Room to the top
 Room to the right
 Room to the bottom
 Room to the left
+If room is naturally dark
 Long description
 Short description
 Either north or null
@@ -22,4 +23,5 @@ Type of first interactable
 	4 = block
 	5 = unblock
 	6 = creator
+	7 = Food
 Parameters of interactable constructor

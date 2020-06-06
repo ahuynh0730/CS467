@@ -3,8 +3,9 @@
 15
 -1
 12
-This is Room 14's long description.
-This is Room 14's short description.
+0
+Adjacent Rooms:\n> To the east is the entrance to Room 15.\n> To the west is the entrance to Room 12.\n\n- This Room is filled with maps and portriates of historical  figures.\n- This room must have belonged to a historian:\n\n
+Adjacent Rooms:\n> To the east is the entrance to Room 15.\n> To the west is the entrance to Room 12.\n\n- It looks like an abandoned History classroom!
 null
 null
 east
@@ -13,4 +14,24 @@ null
 null
 west
 room 12
+4
 0
+Note from room 14
+Chris is innocent!
+
+0
+Key from room 14
+This key was retrieved from the history quiz
+
+3
+History chest
+Contains a clue to find the murderer!
+Key from room 14
+1
+Note from room 14
+
+2
+History quiz
+In what year did World War I end?\n
+1918
+Key from room 14
